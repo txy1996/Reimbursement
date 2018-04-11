@@ -1,0 +1,319 @@
+package com.zlt.system.servlet;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zlt.system.dao.ReimTypeTabDao;
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.dao.impl.ReimTypeTabDaoImpl;
+import com.zlt.system.dao.impl.ReimnumtabDaoImpl;
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.entity.Other;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.NewAppcationService;
+import com.zlt.system.service.impl.NewApplicationServiceImpl;
+
+/**
+ * 该类用来获取从页面传来的报销信息，并进行存储
+ * Servlet implementation class NewAppcationServlet
+ * @author 米邓勇
+ */
+@WebServlet("/NewAppcationServlet")
+public class NewAppcationServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	ReimnumtabDao rd = new ReimnumtabDaoImpl();
+	ReimTypeTabDao rt = new ReimTypeTabDaoImpl();
+	NewAppcationService na = new NewApplicationServiceImpl();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public NewAppcationServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type = request.getParameter("type");
+		System.out.println("123123");
+		System.out.println(type);
+		System.out.println(request.getParameter("content"));
+		if("other".equals(type)){
+			addOther(request, response);
+		}else if("hotel".equals(type)){
+			addHotel(request, response);
+		}else if("travel".equals(type)){
+			addTravel(request, response);
+		}else if("traffic".equals(type)){
+			addTraffic(request, response);
+		}
+	}
+	
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+	/**
+	 * 实现对于差旅报销类型数据的添加纪录
+	 * @2018年1月25日
+	 * @void
+	 * @addTravel
+	 */
+	public void addTravel(HttpServletRequest request, HttpServletResponse response){
+		//差旅表信息插入  ---1
+		Travel t = new Travel();
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null,date1=null,date2= new Date();
+		String date3 = format1.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+		try {
+			date = format1.parse(request.getParameter("startdate"));
+			date1 = format1.parse(request.getParameter("enddate"));
+			date2 = format1.parse(date3);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//t.setTravel_id(111);
+		t.setReim_id(1);
+		t.setEmp_name(request.getParameter("emp"));
+ 		t.setTravel_time(date2);
+		t.setTravel_address(request.getParameter("address"));
+		t.setTravel_start(date);
+		t.setTravel_end(date1);
+		t.setTravel_date(Integer.parseInt(request.getParameter("days")));
+		t.setTravel_target(request.getParameter("target"));
+		t.setTravel_result(request.getParameter("result"));
+		t.setTravel_money(Integer.parseInt(request.getParameter("money")));
+		t.setTravel_remark(request.getParameter("content"));
+		t.setTravel_title(request.getParameter("project"));
+		t.setDepartment_name(request.getParameter("department"));
+		t.setApp_abb("cc");
+		boolean flag1 = na.add(t);
+		System.out.println(flag1);
+		
+		//获取最近插入的报销信息 ---2
+		Travel t1 = new Travel();
+		t1 = na.findMaxtravel();
+		System.out.println(t1);
+		
+		//获取该报销信息的具体报销类型 ---3 共同使用
+		ReimTypeTab rt = new ReimTypeTab();
+		ReimTypeTab rt1 = new ReimTypeTab();
+		rt.setReim_id(t1.getReim_id());
+		System.out.println(rt);
+		rt1 = na.findrei(rt);
+		System.out.println(rt1);
+		
+		//向新增了数据的数据表中修改凭借后的字段名 ---4
+		Travel t2 = new Travel();
+		t2.setApp_abb(rt1.getReim_abb()+t1.getTravel_id());
+		t2.setTravel_id(t1.getTravel_id());
+		boolean fl = na.update(t2);
+		System.out.println("更新组合ID："+fl);
+		
+
+		//设置报销编号表中的报销编号数据 ---4
+		Reimnumtab rm = new Reimnumtab();
+		rm.setApp_id(t1.getTravel_id());
+		rm.setApp_abb( rt1.getReim_abb()+rm.getApp_id());
+		boolean flag = na.add(rm);
+		System.out.println(flag);
+		
+	}
+	/**
+	 * 实现对与交通类型数据的添加
+	 * @2018年1月25日
+	 * @void
+	 * @addTraffic
+	 */
+	public void addTraffic(HttpServletRequest request, HttpServletResponse response){
+		//交通报销表的数据添加
+		Traffic tf = new Traffic();
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null,date1=null,date2= null;
+		String date3 = format1.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+		try {
+			date = format1.parse(request.getParameter("startdate"));
+			date1 = format1.parse(request.getParameter("enddate"));
+			date2 = format1.parse(date3);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(date2);
+		tf.setTraffic_titel(request.getParameter("project"));
+		tf.setDepartment_name(request.getParameter("department"));
+		tf.setEmp_name(request.getParameter("emp"));
+		tf.setApp_abb("cc");
+		tf.setReim_id(2);
+		tf.setTraffic_address(request.getParameter("address"));
+		tf.setTraffic_start(date);
+		tf.setTraffic_end(date1);
+		tf.setTraffic_money(Integer.parseInt(request.getParameter("money")));
+		tf.setTraffic_remark(request.getParameter("content"));
+		tf.setTraffic_time(date2);
+		tf.setTraffic_type(request.getParameter("travel"));
+		boolean flag = na.add(tf);
+		System.out.println(flag);
+		
+		//获取当前表最近插入的数据
+		Traffic tf1 = new Traffic();
+		tf1 = na.findMaxtraffic();
+		System.out.println(tf1);
+		
+		//获取该报销信息的具体报销类型 ---3 共同使用
+		ReimTypeTab rt = new ReimTypeTab();
+		rt.setReim_id(tf1.getReim_id());
+		rt = na.findrei(rt);
+		System.out.println(rt);
+		
+		//进行修改交通费用表
+		Traffic tf2 = new Traffic();
+		tf2.setApp_abb(rt.getReim_abb()+tf1.getTraffic_id());
+		tf2.setTraffic_id(tf1.getTraffic_id());
+		boolean flag1 = na.update(tf2);
+		System.out.println(flag1);
+		
+		//进行修改报销编号表
+		Reimnumtab rm = new Reimnumtab();
+		rm.setApp_abb(rt.getReim_abb()+tf1.getTraffic_id());
+		rm.setApp_id(tf1.getTraffic_id());
+		boolean flag2 = na.add(rm);
+		System.out.println(flag2);
+		
+	}
+	/**
+	 * 实现对于住宿报销类型数据的添加
+	 * @2018年1月25日
+	 * @void
+	 * @addHotel
+	 */
+	public void addHotel(HttpServletRequest request, HttpServletResponse response){
+		//住宿表信息的添加
+		Hotel hotel = new Hotel();
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null,date1=null,date2= null;
+		String date3 = format1.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+		try {
+			date = format1.parse(request.getParameter("startdate"));
+			date1 = format1.parse(request.getParameter("enddate"));
+			date2 = format1.parse(date3);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		hotel.setDepartment_name(request.getParameter("department"));
+		hotel.setEmp_name(request.getParameter("emp"));
+		hotel.setHotel_days(Integer.parseInt(request.getParameter("days")));
+		hotel.setHotel_first(date);
+		hotel.setHotel_finish(date1);
+		hotel.setHotel_Other(request.getParameter("other"));
+		hotel.setHotel_people(request.getParameter("otherpeople"));
+		hotel.setHotel_quarterage(Integer.parseInt(request.getParameter("money")));
+		hotel.setHotel_remarks(request.getParameter("content"));
+		hotel.setHotel_time(date2);
+		hotel.setHotel_site(request.getParameter("address"));
+		hotel.setApp_abb("cc");
+		hotel.setReim_id(3);
+		hotel.setHotel_title(request.getParameter("project"));
+		boolean flag = na.add(hotel);
+		System.out.println(flag);
+		
+		//获取当前表中最近插入的数据
+		Hotel hotel1 = new Hotel();
+		hotel1 = na.findMaxhotel();
+		System.out.println(hotel1);
+		
+		//查询当前表的报销类型缩写
+		ReimTypeTab type = new ReimTypeTab();
+		type.setReim_id(hotel1.getReim_id());
+		type = na.findrei(type);
+		System.out.println(type);
+		
+		//更新报销编号表中的数据
+		Reimnumtab rm = new Reimnumtab();
+		rm.setApp_id(hotel1.getHotel_id());
+		rm.setApp_abb(type.getReim_abb()+hotel1.getHotel_id());
+		boolean flag1 = na.add(rm);
+		System.out.println(flag1);
+		
+		//更新当前表中拼接字段的值
+		Hotel hotel2 = new Hotel();
+		hotel2.setHotel_id(hotel1.getHotel_id());
+		hotel2.setApp_abb(type.getReim_abb()+hotel1.getHotel_id());
+		boolean flag2 = na.update(hotel2);
+		System.out.println(flag2);
+		
+		
+	}
+	/**
+	 * 实现对于其他类型报销数据的添加
+	 * @2018年1月25日
+	 * @void
+	 * @addOther
+	 */
+	public void addOther(HttpServletRequest request, HttpServletResponse response){
+		Other other = new Other();
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		String date1 = format1.format(new Date());// new Date()为获取当前系统时间，也可使用当前时间戳
+		try {
+			date = format1.parse(date1);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		other.setReim_id(Integer.parseInt(request.getParameter("select")));
+		other.setDepartment_name(request.getParameter("department"));
+		other.setEmp_name(request.getParameter("emp"));
+		other.setApp_abb("cc");
+		other.setOther_money(Integer.parseInt(request.getParameter("money")));
+		other.setOther_reason(request.getParameter("reason"));
+		other.setOther_remarks(request.getParameter("content"));
+		other.setOther_time(date);
+		other.setOther_title(request.getParameter("project"));
+		boolean flag = na.add(other);
+		System.out.println(flag);
+		
+		//查询当前表最近出入的数据的信息
+		Other other1 = new Other();
+		other1 = na.findMaxother();
+		System.out.println(other1);
+		
+		//通过查询到的当前表信息获取报销类型缩写
+		ReimTypeTab type = new ReimTypeTab();
+		type.setReim_id(other1.getReim_id());
+		type = na.findrei(type);
+		System.out.println(type);
+		
+		//设置报销编号的的拼接字段
+		Reimnumtab rm = new Reimnumtab();
+		rm.setApp_id(other1.getOther_id());
+		rm.setApp_abb(type.getReim_abb()+other1.getOther_id());
+		boolean flag1 = na.add(rm);
+		System.out.println(flag1);
+		
+		//设置当前表的拼接字段信息
+		Other other2 = new Other();
+		other2.setOther_id(other1.getOther_id());
+		other2.setApp_abb(type.getReim_abb()+other1.getOther_id());
+		boolean flag2 = na.update(other2);
+		System.out.println(flag2);
+	}
+}

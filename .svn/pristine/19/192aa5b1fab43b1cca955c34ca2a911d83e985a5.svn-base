@@ -1,0 +1,10 @@
+package com.zlt.system.dao;
+import com.zlt.system.entity.Hotel;
+/**
+ * 调用住宿类型报销表信息的接口
+ * @author 米邓勇
+ *
+ */
+public interface HotelDao  extends CurrencyDao<Hotel>{
+
+}

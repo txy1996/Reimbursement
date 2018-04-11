@@ -1,0 +1,58 @@
+package com.zlt.system.vo;
+
+import java.util.List;
+
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+
+/**刘俊泽 知了堂 java三组
+ * 2018年1月22日 19：54
+ * 用于操报销申请审批多表查询
+ * 
+ */
+public class ApplyreimVo  {
+	/**Emp_name查询员工表	 
+	 * number_id查询报销单号
+	 * Reimbursementtype查询报销类型 
+	 * department_name查询所属部门
+	 * Finance_money查询报销总金额
+	 */
+	 private String Emp_name;	
+	 
+	 private int number_id;
+	 
+	 private String Reimbursementtype;
+	 
+	 private String department_name;
+	 
+	 private int Finance_money 	;
+	 
+	 
+	 
+	 public List<Employee>findAllByName(String Emp_name) {
+		return null;
+	}
+	 public List<Reimnumtab> findAllById(String number_id){
+		return null;
+		 
+	 }
+		
+	 public List<ReimTypeTab> findAllByType(String Reimbursementtype){
+		return null;
+			
+	 }
+		
+		public List<Department> findAllByDepa(String department_name){
+			return null;
+			
+		}
+		
+		public List<Finance> findAllByMney(int Finance_money){
+			return null;
+			
+		}
+	 
+}

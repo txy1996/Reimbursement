@@ -1,0 +1,41 @@
+package com.zlt.system.service.impl;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.dao.impl.OtherDaoImpl;
+import com.zlt.system.service.HistoryRecordService;
+import com.zlt.system.vo.History;
+
+public class HistoryRecordServiceImpl implements HistoryRecordService {
+	private OtherDao otherDao = new OtherDaoImpl();
+/**
+ * 测试方法
+ * @param args
+ * @throws SQLException 
+ */
+	public static void main(String[] args) throws SQLException {
+		HistoryRecordServiceImpl ser=new HistoryRecordServiceImpl();
+		List list;
+//			list = ser.findByDate("3", true);
+			list=ser.findLike("ni3");
+			System.out.println(list);
+	}
+	
+	@Override
+	public List<History> findAll() throws SQLException {
+		return otherDao.findByDate("3", true);
+	}
+
+	@Override
+	public List<History> findLike(String string) throws SQLException {
+		return otherDao.findLike(string);
+	}
+
+	@Override
+	public List<History> findByDate(String string,boolean flag) throws SQLException {
+		return otherDao.findByDate(string, flag);
+	}
+	
+}

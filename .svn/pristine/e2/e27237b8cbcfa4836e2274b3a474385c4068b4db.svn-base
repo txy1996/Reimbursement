@@ -1,0 +1,169 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.zlt.system.dao.FinanceDao;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.util.DBUtil;
+
+/**
+ * 此类是对FinanceDao接口的方法的实现
+ * 
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月22日20:20
+ * @explain 此类是对FinanceDao接口的方法的实现
+ * 
+ */
+public class FinanceDaoImpl extends CurrencyDaoImpl<Finance> implements FinanceDao {
+
+	private QueryRunner runner = null;
+
+	public FinanceDaoImpl() {
+		runner = new QueryRunner();
+	}
+
+	/**
+	 * 实现FincanceDao接口的FindAll方法
+	 * 
+	 * @return 返回的是查询到的财务表的所有信息集合
+	 * @explain 此方法实现FincanceDao接口的FindAll方法
+	 */
+	@Override
+	public List<Finance> FinanceFindAll() {
+		// TODO Auto-generated method stub
+		List<Finance> finance = null;
+		String sql = "select * from finance";
+		try {
+			finance = runner.query(DBUtil.getConnection(), sql, new BeanListHandler<>(Finance.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return finance;
+	}
+
+	/**
+	 * 实现FincanceDao接口的FindById方法
+	 * 
+	 * @return 返回的是根据id查询到的财务表的所有信息对象
+	 * @explain 此方法实现FincanceDao接口的FindById方法
+	 */
+	@Override
+	public Finance FinanceFindById(int id) {
+		// TODO Auto-generated method stub
+		Finance finance = null;
+		String sql = "select * from finance where finance_id=?";
+		try {
+			finance = runner.query(DBUtil.getConnection(), sql, new BeanHandler<>(Finance.class), id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return finance;
+	}
+
+	/**
+	 * 实现根据id删除财务表中的信息
+	 * 
+	 * @param 传入Finance财务表的id，删除财务信息
+	 * @return 返回整型
+	 * @explain 此方法实现根据id删除财务表中的信息
+	 */
+	@Override
+	public int FinanceDelete(int id) {
+		// TODO Auto-generated method stub
+		String sql = "delete from finance where finance_id=?";
+		int a = 0;
+		try {
+			a = runner.update(DBUtil.getConnection(), sql, id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+
+	}
+
+	/**
+	 * 实现对财务表信息的修改
+	 * 
+	 * @param 传入对象，更新财务表信息
+	 * @return 返回整型
+	 * @explain 此方法实现对财务表信息的修改
+	 */
+	@Override
+	public int FinanceUpdate(Finance finance) {
+		String sql = "update finance set app_abb=?,finance_status=?,finance_payment=?,finance_money=?,finance_date=?,finance_attn=? WHERE finance_id=?";
+		int a = 0;
+		try {
+			a = runner.update(DBUtil.getConnection(), sql, finance.getApp_abb(), finance.getFinance_status(),
+					finance.getFinance_payment(), finance.getFinance_money(), finance.getFinance_date(),
+					finance.getFinance_attn(), finance.getFinance_id());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * 实现增加财务表信息
+	 * 
+	 * @param 传入对象，增加财务表内容
+	 * @return 返回整型
+	 * @explain 此方法用于实现增加财务表信息
+	 */
+	@Override
+	public int FinanceInsert(Finance finance) {
+		// TODO Auto-generated method stub
+		String sql = "insert into finance(app_abb,finance_status,finance_payment,finance_money,finance_date,finance_attn)values(?,?,?,?,?,?)";
+		int a = 0;
+		try {
+			a = runner.update(DBUtil.getConnection(), sql, finance.getApp_abb(), finance.getFinance_status(),
+					finance.getFinance_payment(), finance.getFinance_money(), finance.getFinance_date(),
+					finance.getFinance_attn());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return a;
+
+	}
+	// public static void main(String[] args) {
+	// FinanceDaoImpl fi=new FinanceDaoImpl();
+	// DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	// try {
+	// Date date=format.parse("2018-2-22");
+	// Finance finance=new Finance(2, "QT20000", "未支付", "银行卡支付", 600, date,
+	// "qwe");
+	// int a=fi.FinanceUpdate(finance);
+	// System.out.println(a);
+	// } catch (ParseException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+
+	// FinanceDaoImpl fi=new FinanceDaoImpl();
+	// DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+	// try {
+	// Date date=format.parse("2222-11-11");
+	// Finance finance=new Finance("QT20000", "未支付", "银行卡支付", 900, date, "qwe");
+	// boolean a=fi.insert(finance);
+	// System.out.println(a);
+	// } catch (ParseException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
+}

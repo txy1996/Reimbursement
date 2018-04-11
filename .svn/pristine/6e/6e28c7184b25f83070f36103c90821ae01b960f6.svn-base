@@ -1,0 +1,21 @@
+package com.zlt.system.dao;
+
+import org.apache.catalina.User;
+
+/**
+ * 登录Dao类
+ * 包含一个login方法接口
+ * @author xinzou
+ *
+ */
+
+public interface LoginDao {
+
+	/**
+	 * login方法接口
+	 * @param user
+	 * @return
+	 */
+	public boolean login(User user);
+	
+}

@@ -1,0 +1,72 @@
+package com.zlt.system.service.impl;
+/**
+ * @author 刘俊泽 报销申请实现类
+ */
+import java.util.List;
+
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApplyreimService;
+import com.zlt.system.vo.ApplyreimVo;
+import com.zlt.system.vo.InfoVo;
+
+public class ApplyreimServiceImpl implements ApplyreimService{
+	StatusDao statudao = new StatusDaoImpl();
+	
+	
+
+	@Override
+	public List<ApplyreimVo> Reimbursement() {
+		// TODO Auto-generated method stub
+		return statudao.FindByAll();///查询全部
+	}
+
+
+
+	@Override
+	public void FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public InfoVo ReimbursementInfo(String app_abb, String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+/**
+ * @author 刘俊泽
+ * 审批状态
+ */
+	@Override
+	public void UpdateState(Status status) {
+		// TODO Auto-generated method stub
+		statudao.UpdateStatus(status);
+	}
+
+
+/**
+ * @author 刘俊泽
+ *提交驳回改变状态
+ */
+	@Override
+	public void InsertReson(Status status) {
+		// TODO Auto-generated method stub
+		statudao.UpdateStatus(status);
+	}
+
+	
+
+
+
+	
+
+	
+
+}

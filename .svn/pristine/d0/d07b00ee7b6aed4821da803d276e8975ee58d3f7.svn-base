@@ -1,0 +1,18 @@
+package com.zlt.system.service;
+
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.entity.Other;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.entity.Travel;
+
+/**
+ * 新增申请的业务层
+ * @author 米邓勇
+ *
+ */
+public interface NewAppcationService {
+	public boolean add(Travel travel);
+	public boolean add(Traffic traffic);
+	public boolean add(Other other);
+	public boolean add(Hotel hotel);
+}

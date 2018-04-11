@@ -1,0 +1,48 @@
+package com.zlt.system.entity;
+/**
+ * 
+ * @author 晓煜  知了堂项目Java三组
+ * @date 2018年1月22日20:59:48
+ * @explain  报销编号表的实体类
+ *
+ */
+public class Reimnumtab {
+	 private int  number_id;
+	 private int app_type;
+	 private String app_add;
+	public int getNumber_id() {
+		return number_id;
+	}
+	public void setNumber_id(int number_id) {
+		this.number_id = number_id;
+	}
+	public int getApp_type() {
+		return app_type;
+	}
+	public void setApp_type(int app_type) {
+		this.app_type = app_type;
+	}
+	public String getApp_add() {
+		return app_add;
+	}
+	public void setApp_add(String app_add) {
+		this.app_add = app_add;
+	}
+	public Reimnumtab() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * 
+	 * @param number_id 报销编号，主键,自增长
+	 * @param app_type 报销类型编号，外键
+	 * @param app_add 报销id//拼接过后的值
+	 */
+	public Reimnumtab(int number_id, int app_type, String app_add) {
+		super();
+		this.number_id = number_id;
+		this.app_type = app_type;
+		this.app_add = app_add;
+	}
+	 
+}

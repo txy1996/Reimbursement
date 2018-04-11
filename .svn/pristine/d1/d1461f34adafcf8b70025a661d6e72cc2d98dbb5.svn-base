@@ -1,0 +1,124 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 交通报销表的实体类
+ * @author 晓煜 知了堂项目Java三组
+ *@date 2018年1月22日22:16:09
+ *@explain 交通报销表的实体类
+ */
+@Bean("traffic")
+public class Traffic {
+	@Id("traffic_id")
+	private int traffic_id;
+	@Column("reim_id")
+	private int reim_id;
+	@Column("emp_name")
+	private String emp_name;
+	@Column("traffic_address")
+	private String traffic_address;
+	@Column("traffic_start")
+	private String traffic_start;
+	@Column("traffic_end")
+	private String traffic_end;
+	@Column("traffic_type")
+	private String traffic_type;
+	@Column("traffic_money")
+	private float traffic_money;
+	@Column("traffic_remark")
+	private String traffic_remark;
+	public int getTraffic_id() {
+		return traffic_id;
+	}
+	public void setTraffic_id(int traffic_id) {
+		this.traffic_id = traffic_id;
+	}
+	public int getReim_id() {
+		return reim_id;
+	}
+	public void setReim_id(int reim_id) {
+		this.reim_id = reim_id;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getTraffic_address() {
+		return traffic_address;
+	}
+	public void setTraffic_address(String traffic_address) {
+		this.traffic_address = traffic_address;
+	}
+	public String getTraffic_start() {
+		return traffic_start;
+	}
+	public void setTraffic_start(String traffic_start) {
+		this.traffic_start = traffic_start;
+	}
+	public String getTraffic_end() {
+		return traffic_end;
+	}
+	public void setTraffic_end(String traffic_end) {
+		this.traffic_end = traffic_end;
+	}
+	public String getTraffic_type() {
+		return traffic_type;
+	}
+	public void setTraffic_type(String traffic_type) {
+		this.traffic_type = traffic_type;
+	}
+	public float getTraffic_money() {
+		return traffic_money;
+	}
+	public void setTraffic_money(float traffic_money) {
+		this.traffic_money = traffic_money;
+	}
+	public String getTraffic_remark() {
+		return traffic_remark;
+	}
+	public void setTraffic_remark(String traffic_remark) {
+		this.traffic_remark = traffic_remark;
+	}
+	@Override
+	public String toString() {
+		return "Traffic [traffic_id=" + traffic_id + ", reim_id=" + reim_id + ", emp_name=" + emp_name
+				+ ", traffic_address=" + traffic_address + ", traffic_start=" + traffic_start + ", traffic_end="
+				+ traffic_end + ", traffic_type=" + traffic_type + ", traffic_money=" + traffic_money
+				+ ", traffic_remark=" + traffic_remark + "]";
+	}
+	/**
+	 * 
+	 * @param traffic_id  类型ID，主键,自增长
+	 * @param reim_id 报销类型编号，外键
+	 * @param emp_name 员工姓名，外键
+	 * @param traffic_address 出发地点  
+	 * @param traffic_start 出发时间
+	 * @param traffic_end 到达时间
+	 * @param traffic_type 交通类型
+	 * @param traffic_money 费用总额
+	 * @param traffic_remark 备注
+	 */
+	public Traffic(int traffic_id, int reim_id, String emp_name, String traffic_address, String traffic_start,
+			String traffic_end, String traffic_type, float traffic_money, String traffic_remark) {
+		super();
+		this.traffic_id = traffic_id;
+		this.reim_id = reim_id;
+		this.emp_name = emp_name;
+		this.traffic_address = traffic_address;
+		this.traffic_start = traffic_start;
+		this.traffic_end = traffic_end;
+		this.traffic_type = traffic_type;
+		this.traffic_money = traffic_money;
+		this.traffic_remark = traffic_remark;
+	}
+	public Traffic() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

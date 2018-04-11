@@ -1,0 +1,33 @@
+package com.zlt.system.service.impl;
+
+import java.util.ArrayList;
+
+
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApprovalStatusService;
+
+/**
+*
+*@author 
+*@date 
+*@version 
+*/
+
+public class ApprovalStatusServiceImpl implements ApprovalStatusService {
+
+	public int insert(Status approvalStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<Status> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int update(Status approvalStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

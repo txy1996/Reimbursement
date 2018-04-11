@@ -1,0 +1,30 @@
+package com.zlt.system;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.zlt.system.entity.Users;
+import com.zlt.system.util.DBUtil;
+
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String sql = "select * from users";
+		List<Users> list = null;
+		try {
+			list = DBUtil.getQueryRunner().query(sql, new BeanListHandler<Users>(Users.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("2");
+			e.printStackTrace();
+		}
+		for(Users user:list){
+			System.out.println(user);
+		}
+	}
+
+}

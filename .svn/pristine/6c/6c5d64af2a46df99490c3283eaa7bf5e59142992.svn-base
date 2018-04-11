@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>layui</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="../frame/layui/css/layui.css" media="all">
+<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+<style type="text/css">
+td {
+	height: 50px;
+	align-content: center;
+}
+
+.layui-form-item {
+	position: absolute;
+	right: 350px;
+	top: 10px;
+}
+
+.layui-form-label {
+	position: absolute;
+	top: -7px;
+}
+</style>
+</head>
+<body>
+	<!--搜索框-->
+	<div class="demoTable">
+		搜索详情：
+		<div class="layui-inline">
+			<input class="layui-input" name="id" id="demoReload"
+				placeholder="输入模糊字段" autocomplete="off">
+		</div>
+		<button class="layui-btn" data-type="reload">搜索</button>
+	</div>
+	<!--单行选择框 -->
+	<div class="layui-form-item">
+		<label class="layui-form-label">日期选择:</label>
+		<div class="layui-input-block">
+			<select name="interest" lay-filter="aihao">
+				<option value=""></option>
+				<option value="0">当月</option>
+				<option value="1" selected="">三月内</option>
+				<option value="2">半年</option>
+				<option value="3">当年</option>
+				<option value="4">更久</option>
+			</select>
+		</div>
+	</div>
+	<table class="layui-hide" id="test"></table>
+	<script src="../frame/layui/layui.js" charset="utf-8"></script>
+	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+	<script>
+		layui.use('table', function() {
+			var table = layui.table;
+
+			table.render({
+				elem : '#test',
+				url : '/demo/table/user/',
+				width : 1300,
+				height : 332,
+				cols : [ [ {
+					field : 'id',
+					width : 80,
+					title : '创建人',
+				}, {
+					field : 'username',
+					width : 120,
+					sort : true,
+					title : '创建日期'
+				}, {
+					field : 'sex',
+					width : 100,
+					title : '报销单号',
+				}, {
+					field : 'city',
+					width : 90,
+					title : '报销类型'
+				}, {
+					field : 'sign',
+					width : 90,
+					title : '所属部门'
+				}, {
+					field : 'experience',
+					width : 90,
+					title : '所属项目',
+				}, {
+					field : 'score',
+					width : 90,
+					title : '报账总额',
+				}, {
+					field : 'classify',
+					width : 90,
+					title : '事由'
+				}, {
+					field : 'wealth',
+					width : 150,
+					title : '备注',
+				} ] ],
+			});
+		});
+	</script>
+</body>
+</html>

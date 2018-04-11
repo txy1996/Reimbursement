@@ -1,0 +1,28 @@
+package com.zlt.system.service;
+
+import java.util.ArrayList;
+import com.zlt.system.entity.Status;
+
+/**
+*审批状态业务类
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public interface ApprovalStatusService {
+
+	/**
+	 * 查询申请状态方法接口
+	 * @return
+	 */
+	public ArrayList<Status> selectAll();
+	
+	/**
+	 * 模糊查询方法接口
+	 * @param likeString:模糊查询内容
+	 * @return 查到的结果集
+	 */
+	public ArrayList<Status> selectLike(String likeString);
+
+}

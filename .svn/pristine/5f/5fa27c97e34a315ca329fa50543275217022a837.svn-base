@@ -1,0 +1,180 @@
+package com.zlt.system.service.impl;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.zlt.system.dao.HotelDao;
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.dao.ReimTypeTabDao;
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.dao.impl.HotelDaoImpl;
+import com.zlt.system.dao.impl.OtherDaoImpl;
+import com.zlt.system.dao.impl.ReimTypeTabDaoImpl;
+import com.zlt.system.dao.impl.ReimnumtabDaoImpl;
+import com.zlt.system.dao.impl.TrafficDaoImpl;
+import com.zlt.system.dao.impl.TravelDaoImpl;
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.entity.Other;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.NewAppcationService;
+/**
+ * 报销申请的实现类
+ * @author 米邓勇
+ * @下午9:40:29
+ */
+public class NewApplicationServiceImpl implements NewAppcationService{
+	HotelDao hd = new HotelDaoImpl();
+	TravelDao tvd =new TravelDaoImpl();
+	TrafficDao tfd = new TrafficDaoImpl();
+	OtherDao od = new OtherDaoImpl();
+	ReimnumtabDao rd = new ReimnumtabDaoImpl();
+	ReimTypeTabDao rt = new ReimTypeTabDaoImpl();
+	public static void main(String[] args) {
+		NewApplicationServiceImpl na = new NewApplicationServiceImpl();
+		//获取最近插入的报销信息
+		Travel t = new Travel();
+		t = na.findMaxtravel();
+		System.out.println(t);
+		//获取该报销信息的具体报销类型
+		ReimTypeTab rt = new ReimTypeTab();
+		ReimTypeTab rt1 = new ReimTypeTab();
+		rt.setReim_id(t.getReim_id());
+		System.out.println(rt);
+		rt1 = na.findrei(rt);
+		System.out.println(rt1);
+		//设置报销编号表中的报销编号数据
+		Reimnumtab rm = new Reimnumtab();
+		rm.setApp_id(t.getTravel_id());
+		rm.setApp_add( rt1.getReim_abb()+rm.getApp_id());
+		boolean flag = na.add(rm);
+		System.out.println(flag);
+//		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+//		Date date = null,date1=null;
+//		try {
+//			date = format1.parse("2017-04-05");
+//			date1 = format1.parse("2017-05-05");
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		t.setTravel_id(111);
+//		t.setReim_id(1);
+//		t.setEmp_name("tjy");
+//		t.setTravel_address("成都");
+//		t.setTravel_start(date);
+//		t.setTravel_end(date1);
+//		t.setTravel_date(30);
+//		t.setTravel_target("完成");
+//		t.setTravel_result("完美完成");
+//		t.setTravel_money(333);
+//		t.setTravel_remark("~~~");
+//		boolean flag = na.add(t);
+//		System.out.println(flag);
+	}
+	/**
+	 * 通过返回值判断数据是否插入成功
+	 * @return boolean
+	 * @param travel
+	 */
+	@Override
+	public boolean add(Travel travel) {
+		tvd.insert_NoID(travel);
+		return false;
+	}
+	/**
+	 * 通过返回值判断数据是否插入成功
+	 * @return boolean
+	 * @param traffic
+	 */
+	@Override
+	public boolean add(Traffic traffic) {
+		return tfd.insert_NoID(traffic);
+	}
+	/**
+	 * 通过返回值判断数据是否插入成功
+	 * @return boolean
+	 * @param other
+	 */
+	@Override
+	public boolean add(Other other) {
+		return od.insert_NoID(other);
+	}
+	/**
+	 * 通过返回值判断数据是否插入成功
+	 * @return boolean
+	 * @param hotel
+	 */
+	@Override
+	public boolean add(Hotel hotel) {
+		return hd.insert_NoID(hotel);
+	}
+	/**
+	 * 通过返回值判断数据是否插入成功
+	 * @return boolean
+	 * @param rm
+	 */
+	@Override
+	public boolean add(Reimnumtab rm) {
+		return rd.insert_NoID(rm);
+	}
+	/**
+	 * 通过id查询获取数据
+	 * @return ReimTypeTab
+	 * @param rt
+	 */
+	@Override
+	public ReimTypeTab findrei(ReimTypeTab rt) {
+		return this.rt.findById(rt.getReim_id());
+	}
+	/**
+	 * 通过查询获取到最近添加的一条数据
+	 * @return Travel
+	 */
+	@Override
+	public Travel findMaxtravel() {
+		// TODO Auto-generated method stub
+		return tvd.findMaxId();
+	}
+	/**
+	 * 通过查询获取到最近添加的一条数据
+	 * @return Traffic
+	 */
+	@Override
+	public Traffic findMaxtraffic() {
+		// TODO Auto-generated method stub
+		return tfd.findMaxId();
+	}
+	/**
+	 * 通过查询获取到最近添加的一条数据
+	 * @return Other
+	 */
+	@Override
+	public Other findMaxother() {
+		// TODO Auto-generated method stub
+		return od.findMaxId();
+	}
+	/**
+	 * 通过查询获取到最近添加的一条数据
+	 * @return Hotel
+	 */
+	@Override
+	public Hotel findMaxhotel() {
+		// TODO Auto-generated method stub
+		return hd.findMaxId();
+	}
+
+
+
+
+	
+
+	
+
+}

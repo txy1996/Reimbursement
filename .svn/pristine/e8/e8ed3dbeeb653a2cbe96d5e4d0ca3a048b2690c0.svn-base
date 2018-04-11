@@ -1,0 +1,35 @@
+package com.zlt.system;
+
+import java.util.List;
+
+import com.zlt.system.entity.Hire;
+import com.zlt.system.service.HireService;
+
+
+/**
+ * 
+ * @author 米邓勇
+ * @date2018/1/22
+ * @explain 测试类
+ */
+public class Test  {
+	HireService ss = new HireService();
+	public static  void main(String[] args) {
+		Test test =new Test();
+		test.findAll();
+	}
+	/**
+	 * @explain 获取数据库数据并打印出来
+	 */
+	public void findAll(){
+		Hire h = new Hire();
+		try {
+			List<Hire> list = ss.findall();
+			for(Hire hi:list){
+				System.out.println(hi);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+}

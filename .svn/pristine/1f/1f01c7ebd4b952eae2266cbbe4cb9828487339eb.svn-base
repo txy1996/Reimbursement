@@ -1,0 +1,13 @@
+package com.zlt.system.dao.impl;
+
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.entity.Traffic;
+
+/**
+ * 调用交通表信息的实现类
+ * @author 米邓勇
+ *
+ */
+public class TrafficDaoImpl extends CurrencyDaoImpl<Traffic> implements TrafficDao{
+
+}

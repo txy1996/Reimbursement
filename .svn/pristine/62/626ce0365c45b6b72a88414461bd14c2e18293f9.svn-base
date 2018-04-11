@@ -1,0 +1,86 @@
+package com.zlt.system.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.service.EmployeeService;
+import com.zlt.system.service.impl.EmployeeServiceImpl;
+import com.zlt.system.vo.Line;
+
+/**
+ * Servlet implementation class EmployeeServlet
+ */
+@WebServlet("/EmployeeServlet")
+/**
+ * 个人信息设置界面
+ * @author 晓煜
+ * @date2018年1月25日上午9:18:31
+ * @version
+ * @explain
+ */
+public class EmployeeServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EmployeeServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		EmployeeFindById(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		CheckPasswoed(request, response);
+	}
+	public void  EmployeeFindById(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		response.setContentType("text/html;charset=UTF-8");
+		EmployeeService employeeService=new EmployeeServiceImpl();
+		String flag=null;
+		Employee employee=new Employee("通讯员");
+		Line line=employeeService.EmployeeServiceFindById(employee);
+		JSONArray jsonArray=new JSONArray();
+		jsonArray.add(line);
+		flag=JSON.toJSONString(jsonArray);
+		response.getWriter().write(jsonArray.toString());
+		System.out.println(flag);
+	}
+//	public void CheckPasswoed(HttpServletRequest request, HttpServletResponse response)
+//			throws ServletException, IOException{
+//		response.setContentType("text/html;charset=UTF-8");
+//		EmployeeService employeeService=new EmployeeServiceImpl();
+//		String flag=null;
+//		String password=request.getParameter("password");
+//		Employee employee=new Employee("通讯员",password);
+//		int a=0;
+//		Employee employee2=employeeService.EmployeeServiceCheckPasswoed(employee);
+//		if (employee2!=null) {
+//			 a=1;
+//		} 
+//		JSONArray jsonArray=new JSONArray();
+//		jsonArray.add(a);
+//		flag=JSON.toJSONString(jsonArray);
+//		response.getWriter().write(jsonArray.toString());
+//		System.out.println(flag);
+//	}
+}

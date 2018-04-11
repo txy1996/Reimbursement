@@ -1,0 +1,73 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.entity.Finance;
+import com.zlt.system.service.FinanceService;
+/**
+ * 此service是实现FinanceService接口方法
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月23日14:35
+ */
+public class FinanceServiceImpl implements FinanceService{
+
+	/**
+	 * 用于判断是否增加信息成功，标准是几行受影响
+	 * @param finance 传入一个对象
+	 * @return 返回一个整型，判断是否增加成功
+	 * @explain 此方法是对FinanceService接口方法的实现，用于判断是否增加信息成功
+	 */
+	@Override
+	public int FinanceInsert(Finance finance) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * 用于判断是否删除信息成功
+	 * @param id
+	 * @return 返回一个整型，判断是否删除成功
+	 * @explain 此方法是对FinanceService接口方法的实现，用于判断是否删除信息成功
+	 */	
+	@Override
+	public int FinanceDelete(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * 判断成功标准是几行受影响
+	 * @param finance 对象
+	 * @return  返回一个整型，判断是否删除成功
+	 * @explain 此方法是对FinanceService接口方法的实现，用于判断是否更新信息成功
+	 */
+	@Override
+	public int FinanceUpdate(Finance finance) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * 用于判断是否根据id查询信息成功 如果集合不为空，就说明查询成功
+	 * @param id
+	 * @return 返回一个集合
+	 * @explain 此方法是对FinanceService接口方法的实现，用于判断是否根据id查询信息成功
+	 */	
+	@Override
+	public List<Finance> FinanceFindById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 用于判断是否查询全部信息成功 如果集合不为空，就说明查询成功
+	 * @return 
+	 *  @explain 此方法是对FinanceService接口方法的实现，用于判断是否全部查询信息成功
+	 */
+	@Override
+	public List<Finance> FinanceFindAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

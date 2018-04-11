@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>审批状态查询</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="../frame/layui/css/layui.css" media="all">
+		<!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+		<style type="text/css">
+			td {
+				height: 50px;
+				align-content: center;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--搜索框-->
+		<div class="demoTable">
+			搜索关键字：
+			<div class="layui-inline">
+				<input class="layui-input" name="id" id="demoReload" placeholder="输入模糊字段" autocomplete="off">
+			</div>
+			<button class="layui-btn" data-type="reload">搜索</button>
+		</div>
+		<table class="layui-table" lay-data="{height: 313, url:'/demo/table/user/', initSort: {field:'wealth', type:'desc'}}" lay-filter="demoEvent">
+			<thead>
+				<tr>
+					<th lay-data="{field:'id', width:120}">报销单号</th>
+					<th lay-data="{field:'username', width:120}">申报日期</th>
+					<th lay-data="{field:'score', width:80, sort: true}">报销类型</th>
+					<th lay-data="{field:'score', width:80, sort: true}">办理金额</th>
+					<th lay-data="{field:'score', width:80, sort: true}">经办人</th>
+					<th lay-data="{field:'wealth', sort: true, minWidth: 150}">备注</th>
+				</tr>
+			</thead>
+		</table>
+
+		<script src="../frame/layui/layui.js" charset="utf-8"></script>
+		<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+		<script>
+			layui.use('table', function() {
+				var table = layui.table;
+			});
+		</script>
+
+	</body>

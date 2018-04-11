@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>详情填写</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+    <script type="text/javascript" src="../layer/jquery.min.js" ></script>  
+</head>
+<body class="body">
+
+<form class="layui-form layui-form-pane" action="">
+    <input type="hidden" name="type" value="other" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="emp" id="emp" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">所在部门</label>
+        <div class="layui-input-inline">
+            <input type="text" name="department" id="department" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+       
+    </div>
+    <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline"  >
+                <select id="select" name="select">
+                    <option value="1" disabled>差旅</option>
+                    <option value="2" disabled>交通</option>
+                    <option value="3" disabled>住宿</option>
+                    <option value="4"  >其他</option>
+                </select>
+               
+            </div>  
+        </div>
+        <div class="layui-form-item">
+        <label class="layui-form-label">所属项目</label>
+        <div class="layui-input-inline">
+            <input type="text" name="project" id="project" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">费用总额</label>       
+    <div class="layui-input-inline" style="width: 100px;">
+        <input type="text" name="money" id="money" placeholder="￥" autocomplete="off" class="layui-input">
+    </div>
+</div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">申请理由</label>
+                <div class="layui-input-block">
+                    <input type="text" name="reason" id="reason" autocomplete="off" placeholder="请输入" lay-verify="required"
+                           class="layui-input">
+                </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+      <textarea name="desc" placeholder="请输入内容" id="content" class="layui-textarea"></textarea>
+  		</div>
+   </div>
+    
+     <div class="layui-form-item">
+        <button class="layui-btn" lay-submit=""  id="btn"  lay-filter="sub">提交</button>
+    </div> 
+</form>
+
+ 
+</div> 
+
+<script src="../frame/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+$("#btn").click(function(){	
+    $.ajax({
+                url:"../NewAppcationServlet",
+                type:"post",
+                dataType:"json",
+                data:{"type":"other","emp":$("#emp").val(),"department":$("#department").val(),"select":$("#select").val(),
+                "project":$("#project").val(),"money":$("#money").val(),"reason":$("#reason").val(),
+                "content":$("#content").val()},
+                success:function(data){
+                	 if(data.status == 1){
+                     	layer.open({
+                     		 type:2,
+                     	     title:'票据上传',
+                     	     shadeClose:true,
+                     	     shade:0.5,
+                     	     area:['80%','80%'],
+                     	     content:'UpImg.jsp?id='+data.id+'',//'UpImg.jsp?id=30004'
+                     	     end: function () {
+                     	    	 location.href='Submit.html';
+                     	    	 }
+                     	 });
+                     }
+                },error:function(){
+                    alert("连接失败！")
+                }
+            });
+})
+
+    layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+        var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate
+                , element = layui.element;
+
+         laydate.render({
+         elem: '#startdate'
+        });
+        laydate.render({
+            elem: '#enddate'
+        });
+
+
+        //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        });
+       
+        //监听提交
+        form.on('submit(sub)', function (data) {
+        	/* layer.open({
+       		 type:2,
+                title:'票据上传',
+                shadeClose:true,
+                shade:0.5,
+                area:['80%','80%'],
+                content:'UpImg.html',
+                end: function () {
+               	 location.href='Submit.html';
+               	 }
+            }); */
+            return false;
+        })
+     
+            
+        // you code ...
+
+
+    });
+</script>
+</body>
+</html>

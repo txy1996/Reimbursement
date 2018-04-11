@@ -1,0 +1,89 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 消息表的实体类
+ * @author 米邓勇
+ *
+ */
+@Bean("message")
+public class Message {
+	@Id("message_id")
+	private int id;
+	
+	@Column("emp_name1")
+	private String name1;
+	
+	@Column("emp_name2")
+	private String name2;
+	
+	@Column("message_type")
+	private String type;
+	
+	@Column("message_content")
+	private String content;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName1() {
+		return name1;
+	}
+
+	public void setName1(String name1) {
+		this.name1 = name1;
+	}
+
+	public String getName2() {
+		return name2;
+	}
+
+	public void setName2(String name2) {
+		this.name2 = name2;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [id=" + id + ", name1=" + name1 + ", name2=" + name2 + ", type=" + type + ", content=" + content
+				+ "]";
+	}
+
+	public Message(int id, String name1, String name2, String type, String content) {
+		super();
+		this.id = id;
+		this.name1 = name1;
+		this.name2 = name2;
+		this.type = type;
+		this.content = content;
+	}
+
+	public Message() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

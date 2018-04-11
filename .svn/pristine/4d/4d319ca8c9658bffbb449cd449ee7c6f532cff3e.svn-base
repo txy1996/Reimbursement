@@ -1,0 +1,39 @@
+package com.zlt.system.service.impl;
+
+import java.util.ArrayList;
+
+
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApprovalStatusService;
+
+/**
+*申请状态查询实现类
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public class ApprovalStatusServiceImpl implements ApprovalStatusService {
+
+
+	/**
+	 * 申请状态全部查询
+	 * @return 返回查询结果集
+	 */
+	public ArrayList<Status> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	/**
+	 * 申请状态模糊查询
+	 * @return 返回查询结果集
+	 */
+	@Override
+	public ArrayList<Status> selectLike(String likeString) {
+
+		return null;
+	}
+
+}

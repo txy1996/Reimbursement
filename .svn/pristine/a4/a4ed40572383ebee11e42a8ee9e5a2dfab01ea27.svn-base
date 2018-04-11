@@ -1,0 +1,64 @@
+package com.zlt.system.dao.impl;
+
+import java.util.ArrayList;
+
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.entity.Status;
+
+
+/**
+*ApprovalStatusDao实现类
+*包含增、改、查方法
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public class StatusDaoImpl extends CurrencyDaoImpl<Status> implements StatusDao {
+
+
+	/**
+	 * 查询申请状态方法实现
+	 * return:返回结果集
+	 */
+	public ArrayList<Status> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	/**
+	 * 模糊查询方法实现
+	 * @return 模糊查询结果集
+	 */
+	public ArrayList<Status> selectLike(String likeString) {
+		
+		return null;
+	}
+	
+	/**
+	 * 查看详情方法
+	 * return:返回申请状态对象
+	 */
+	@Override
+	public Status selectDetails(int ApproId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * 审批通过后状态的改变
+	 */
+	@Override
+	public void UpdateStatus(Status status) {
+		// TODO Auto-generated method stub
+		
+	}
+	/**
+	 * 报销审批驳回之后的意见修改
+	 */
+	@Override
+    public void UpdateOpinion(Status status) {
+		// TODO Auto-generated method stub
+	
+	}
+	
+}

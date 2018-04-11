@@ -1,0 +1,18 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.impl.FinanceVoDaoImpl;
+import com.zlt.system.service.FinanceVoService;
+import com.zlt.system.vo.FinanceVo;
+
+public class FinanceVoServiceImpl implements FinanceVoService{
+
+	@Override
+	public List<FinanceVo> FinanceFindByApp_abb(String app_abb) {
+		FinanceVoDaoImpl aa=new FinanceVoDaoImpl();
+		List<FinanceVo> a=aa.FinanceFindByApp_abb(app_abb);
+		return a;
+	}
+
+}

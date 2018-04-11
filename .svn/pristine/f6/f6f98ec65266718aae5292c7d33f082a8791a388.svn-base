@@ -1,0 +1,31 @@
+package com.zlt.system.service;
+
+import java.util.List;
+
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+
+/**Emp_name查询员工表	 
+ * number_id查询报销单号
+ * Reimbursementtype查询报销类型 
+ * department_name查询所属部门
+ * Finance_money查询报销总金额
+ */
+
+
+public interface ApplyreimService {
+	public List<Employee> findAllByName(String Emp_name0 );
+	
+	public List<Reimnumtab> findAllById(String number_id);
+	
+	public List<ReimTypeTab> findAllByType(String Reimbursementtype);
+	
+	public List<Department> findAllByDepa(String department_name);
+	
+	public List<Finance> findAllByMney(int Finance_money);
+	
+	
+}

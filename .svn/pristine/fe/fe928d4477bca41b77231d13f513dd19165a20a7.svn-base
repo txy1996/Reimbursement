@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人信息</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+</head>
+<body>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>个人资料</legend>
+</fieldset>
+<div class="layui-tab">
+    <ul class="layui-tab-title">
+      <li class="layui-this">基本资料</li>
+      <li>密码修改</li>
+      <li>头像设置</li>
+    </ul>
+    <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+<form class="layui-form" action="" id="mainForm">
+    <div class="layui-form-item">
+        <label class="layui-form-label">所属部门</label>
+        <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao"  id="sector">
+                <option value="研发部">研发部</option>
+                <option value="财务部" >财务部</option>
+                <option value="市场部">市场部</option>
+                <!-- <option value="3">音乐</option>
+                <option value="4">旅行</option> -->
+            </select>
+        </div>
+
+        <label class="layui-form-label">职位</label>
+        <div class="layui-input-inline">
+            <select name="interest" lay-filter="aihao" id="post">
+                <option value="开发人员">开发人员</option>
+                <option value="项目leader" >项目leader</option>
+                <option value="开发部经理">开发部经理</option>
+                <option value="会计">会计</option>
+                <option value="财务主管">财务主管</option>
+                 <option value="市场推销">市场推销</option>
+                  <option value="推销组长">推销组长</option>
+                   <option value="市场部经理">市场部经理</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">工作编号</label>
+        <div class="layui-input-inline">
+            <input type="text" name="JobCode" id="JobCode" value="" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+
+         <label class="layui-form-label">姓名</label>
+        <div class="layui-input-inline">
+        <input type="hidden" id="tell" value="Update">
+            <input type="text" name="username"  id="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+        </div>
+
+    </div>
+    <!-- <div class="layui-form-item">
+       
+    </div> -->
+    <div class="layui-form-item" pane="">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block" >
+        <input type="hidden" id="sex" value="">
+        <input type="hidden" id="type1" value="">
+            <input type="radio" name="sex" id="sex1"  value="男" title="男"  checked="true">
+            <input type="radio" name="sex"  id="sex2"  value="女" title="女" >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">出生日期</label>
+            <div class="layui-input-block">
+                <input type="text" name="BirthDate" id="BirthDate" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-inline">
+            <label class="layui-form-label">入职时间</label>
+            <div class="layui-input-block">
+                <input type="text" name="hiredate" id="hiredate" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">联系电话</label>
+            <div class="layui-input-inline">
+                <input type="tel" name="phone"  id="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label">邮箱地址</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email"  id="email"lay-verify="email" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item"style="width: 630px">
+        <label class="layui-form-label">银行卡绑定</label>
+        <div class="layui-input-block">
+            <input type="text" name="BankAmericard"  id="BankAmericard"  placeholder="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    
+    
+     <div class="layui-form-item"style="width: 630px">
+        <label class="layui-form-label">地址</label>
+        <div class="layui-input-block">
+            <input type="text" name="address"  id="address"  placeholder="" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text"style="width: 630px">
+        <label class="layui-form-label">个性签名</label>
+        <div class="layui-input-block">
+            <textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit=""  type="submit" id="agreementSub" lay-filter="demo1">提交</button>
+            <button class="layui-btn" lay-submit=""   lay-filter="demo1">返回</button>
+        </div>
+    </div>
+</form>
+</div>
+<div class="layui-tab-item">
+
+        <div class="layui-form-item">
+                <label class="layui-form-label">原密码</label>
+                <div class="layui-input-inline">
+              <input type="hidden" id="ck" value="ko"> 
+                    <input type="password" name="password" id="old" lay-verify="pass" placeholder="请输入要修改的密码" autocomplete="off" class="layui-input"> <span id="cue"></span>
+                </div>
+                
+            </div>
+
+            <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-inline">
+                        <input type="password"  id="new" lay-verify="pass" placeholder="请输入修改后密码" autocomplete="off" class="layui-input">
+                        
+                    </div>
+                    
+                </div>
+
+                <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password"  id="new1" lay-verify="pass" placeholder="再次输入确认密码" autocomplete="off" class="layui-input">
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit=""  id="pwd" lay-filter="type" value="">提交</button>
+
+                                <button class="layui-btn" lay-submit="" lay-filter="demo1">返回</button>
+                            </div>  
+                    </div>
+
+                    
+                    
+            
+</div>
+<div class="layui-tab-item"><fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend></legend>
+</fieldset>
+ 
+<div class="layui-upload">
+    <img class="layui-upload-img" id="demo1" style="width:200px; height:200px;">
+    <p id="demoText"></p>
+  </div>
+ <button type="button" class="layui-btn" id="test1">
+        <i class="layui-icon">&#xe67c;</i>上传头像
+      </button>
+</div>   
+</div>
+</div>
+</div>
+<script src="../frame/layui/layui.js" charset="utf-8"></script>
+<script>
+
+        layui.use('element', function(){
+          var element = layui.element;
+          
+          //…
+        });
+        </script>
+<script type="text/javascript">
+    layui.use(['form', 'layedit', 'laydate'], function(){
+        var form = layui.form()
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //创建一个编辑器
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 2){
+                    return '请输入正确的名字';
+                }
+            }
+            ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            layer.alert(JSON.stringify(data.field), {
+                title: '设置成功！'
+            });
+            return false;
+        });
+
+
+    });
+</script>
+<script type="text/javascript" src="../frame/layui/layui.js"></script>
+<script type="text/javascript">
+    layui.use(['layer','element'], function(){
+        var element = layui.element(),layer = layui.layer,$ = layui.jquery; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航(side)点击切换页面
+        element.on('nav(side)', function(elem){
+            var src = elem.children('a').attr('href-url');
+            if(src != null && src != ''){
+                $('#iframe').attr('src',src);
+            }
+            layer.msg(elem.text());
+        });
+    });
+</script> 
+<script type="text/javascript" src="../jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery.form.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        shiver();
+    });
+    function shiver(){
+        $.ajax({
+            type : "post",//提交方式 get post
+			url : "../EmployeeServlet",//提交地址
+            dataType : "json",//期望数据类型  json | text | html |xml
+            data:{"type":"shiver"},
+            success:function (data) {
+                console.log(data)
+                console.log(data)
+                $("#JobCode").val(data[0].emp_id)
+                $("#username").val(data[0].emp_name)
+				$("#BirthDate").val(data[0].emp_birth)
+				$("#hiredate").val(data[0].emp_hiredate)
+				$("#phone").val(data[0].emp_tel)
+				$("#email").val(data[0].emp_email)
+				$("#BankAmericard").val(data[0].emp_bankcard)
+				$("#password").val(data[0].emp_pin)
+				$("#address").val(data[0].emp_address)
+				$("#sector").val(data[0].department_name)
+				$("#post").val(data[0].position_name) 
+				if(data[0].emp_sex=="男"){
+					$("#sex1").attr("checked",true); 
+					$("#sex2").attr("checked",false); 
+					$("#sex").val("男")
+					$("#type1").val("update")
+				}else{
+					$("#sex2").attr("checked",true); 
+					$("#sex1").attr("checked",false); 
+					$("#sex").val("女")
+					$("#type1").val("update")
+				}
+                
+			},
+			error : function() {
+				 console.log("请求失败111")
+			}
+		})
+	}
+    
+    
+    
+    $("#agreementSub").on("click",function(){  
+        $('#mainForm').ajaxSubmit(     
+             {  
+                 url: '../EmployeeServlet',  
+                 type: 'post',  
+                 dataType: 'json',  
+				  data:{"type":"update" }, 
+                 beforeSubmit: function () {},  
+                 success: function (data) {  
+                     if (data.Res == "True" || data.Res == true) {  
+                         $('.jsrz_main_check').html('');  
+                     } else {  
+                         alert(data.Msg);  
+                     }  
+                 },  
+                /*  clearForm: false,//禁止清楚表单  
+                 resetForm: false //禁止重置表单  */ 
+             });  
+ });  
+
+<script type="text/javascript">
+$("#old").blur(function (){
+    $.ajax({
+        type:"post",
+        url:"../EmployeeServlet",
+        dataType:"json",
+        data:{"password":$("#old").val(),"type":"Check"},
+        success:function(data){
+            console.log(data)
+            var str= data.ok
+            console.log(str);
+           
+            if(str=="通过"){
+            	$("#ck").val("ok")
+            	console.log("1有动静吗？");
+            }if(str=="不通过"){
+            	console.log("有动静吗1？");
+            	$("#ck").val("ko")
+            	$("#cue").text("输入错误")
+            }
+            console.log($("#ck").val());
+        }, 
+        error:function(){
+            console.log("有动静吗？");
+            $("#cue").text("输入错误")
+        }
+    })
+})
+        $("#old").focus(function(){
+                $("#cue").text("")
+            }
+        )
+        
+         $("#pwd").click(function(){
+        	 var new1=$("#new").val()
+             var new2=$("#new1").val()
+        	var ck= $("#ck").val()
+        	console.log(ck);
+        	 if(ck=="ko"){
+        		 alert("请输入原密码");
+        		 return;
+        	 }
+         	if (new1==new2) {
+         		pass();
+         		
+            }else{
+            	alert("两次密码输入不匹配");
+            	} 
+        	})
+        
+function pass(){
+    $.ajax({
+        type : "post",
+        url : "../EmployeeServlet",
+        dataType : "json",
+        data : {"new1" : $("#new1").val(),"type" :"ok"},
+        success : function(data) {
+        	 console.log(data)
+        	 alert("修改成功");
+        } ,error:function(){
+            alert("呵呵");
+        }
+    })
+}
+	
+</script>
+
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '/upload/'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+  
+});
+</script>
+
+</body>
+</html>

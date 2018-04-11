@@ -1,0 +1,77 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 职位表的实体类
+ * @author 米邓勇
+ *
+ */
+@Bean("posi")
+public class Position {
+	@Id("position_id")
+	private int id;
+	
+	@Column("position_name")
+	private String name;
+	
+	@Column("position_level")
+	private int level;
+	
+	@Column("department_id")
+	private int department_id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getDepartment_id() {
+		return department_id;
+	}
+
+	public void setDepartment_id(int department_id) {
+		this.department_id = department_id;
+	}
+
+	@Override
+	public String toString() {
+		return "Position [id=" + id + ", name=" + name + ", level=" + level + ", department_id=" + department_id + "]";
+	}
+
+	public Position(int id, String name, int level, int department_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.level = level;
+		this.department_id = department_id;
+	}
+
+	public Position() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

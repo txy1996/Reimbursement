@@ -1,0 +1,60 @@
+package com.zlt.system.dao.impl;
+/**
+ * 实现类
+ */
+import java.util.List;
+
+import com.zlt.system.dao.ApplyreimDao;
+import com.zlt.system.vo.ApplyreimVo;
+
+public class ApplyreimImpl implements ApplyreimDao{
+/**
+ * 财务全查
+ */
+	@Override
+	public List<ApplyreimVo> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * 员工名字
+ */
+	@Override
+	public List<ApplyreimVo> findByEmp_name() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * 报销单号
+ */
+	@Override
+	public List<ApplyreimVo> findByReimbursementtype_id() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * 报销类型
+ */
+	@Override
+	public List<ApplyreimVo> findByReimbursementtype_type() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * 所属部门
+ */
+	@Override
+	public List<ApplyreimVo> findBydepartment_name() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+/**
+ * 报销金额
+ */
+	@Override
+	public List<ApplyreimVo> findByFinance_money() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

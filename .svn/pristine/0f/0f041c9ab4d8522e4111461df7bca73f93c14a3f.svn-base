@@ -1,0 +1,76 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import javax.management.Query;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.Report;
+/**
+ * 差旅表数据的接口
+ * @author 米邓勇
+ *
+ */
+public class TravelDaoImpl extends CurrencyDaoImpl<Travel> implements TravelDao {
+
+	@Override
+	public List<Report> TravelFindById(Employee employee) {
+		// TODO Auto-generated method stub
+		String sql="SELECT m.reim_id AS TYPE,COUNT(m.reim_id) AS number FROM "
+				+" (SELECT app_abb,reim_id FROM travel WHERE travel.`emp_name`= ?  "
+				+" UNION "
+				+" SELECT app_abb,reim_id FROM traffic WHERE traffic.`emp_name`= ?  "
+				+" UNION  " 
+				+" SELECT app_abb,reim_id FROM other WHERE other.`emp_name`= ? "
+				+" UNION  "
+				+" SELECT app_abb,reim_id FROM  hotel WHERE hotel.`emp_name`= ? ) m "
+				+" GROUP BY m.reim_id ";
+		List<Report> reports=new ArrayList<Report>();
+		try {
+			reports=DBUtil.getQueryRunner().query(sql, new BeanListHandler<Report>(Report.class),employee.getEmp_name(),employee.getEmp_name(),employee.getEmp_name(),employee.getEmp_name());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reports;
+	}
+/**
+ * @author 任义平
+ * 用于会计审计界面的详情查询
+ */
+	@Override
+	public Travel FindByType(String app_abb, String type) {
+		// TODO Auto-generated method stub
+		String sql="SELECT travel_address,travel_start,travel_end,travel_target,travel_result,travel_date,travel_remark,reim_type\r\n" + 
+				"FROM travel,reimtypetab\r\n" + 
+				"WHERE app_abb=? AND reimtypetab.`reim_id`=travel.`reim_id` AND reim_type=?";
+		QueryRunner runner=new QueryRunner();
+		Travel travel=null;
+		try {
+			travel=runner.query(DBUtil.getConnection(), sql, new BeanHandler<Travel>(Travel.class),app_abb,type);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return travel;
+	}
+
+	public static void main(String[] args) {
+		TravelDaoImpl travelDaoImpl=new TravelDaoImpl();
+		Employee employee=new Employee("通讯员");
+		List<Report> reports=travelDaoImpl.TravelFindById(employee);
+		for (Report report:reports) {
+			
+			System.out.println(report.toString());
+		}
+	}
+
+}

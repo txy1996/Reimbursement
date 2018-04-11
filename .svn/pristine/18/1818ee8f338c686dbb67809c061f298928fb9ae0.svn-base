@@ -1,0 +1,27 @@
+package com.zlt.system.dao.impl;
+
+import com.zlt.system.dao.LoginDao;
+import com.zlt.system.entity.Employee;
+
+/**
+ * LoginDao的实现类
+ * 包含一个Login(User user)方法
+ * @author xinzou
+ */
+
+public class LoginDaoImpl implements LoginDao {
+
+	/**
+	 * login方法实现
+	 * @return 是否找到该对象
+	 */
+	@Override
+	public boolean login(Employee employee) {
+		boolean flag = false;
+		//调用根据员工Id查找方法
+		
+		return flag;
+	
+	}
+
+}

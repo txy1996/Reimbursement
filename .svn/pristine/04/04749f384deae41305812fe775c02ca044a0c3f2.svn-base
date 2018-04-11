@@ -1,0 +1,39 @@
+package com.zlt.system.service;
+
+import java.util.List;
+
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public interface AccountingService {
+	/**
+	 * 根据报销编号查询
+	 */
+	public void FindById(String num);
+	/**
+	 * 报销信息全部显示
+	 * @param <T>
+	 * 
+	 */
+	public List<?> Reimbursement();
+	/**
+	 * 查看报销的详细信息
+	 * @return详情
+	 */
+	public List<?> ReimbursementInfo(int id,String type);
+	/**
+	 * 审批通过后更新状态
+	 * @param status状态
+	 */
+	public void UpdateState(int id,Status status,String type);
+	/**
+	 * 提交驳回原因改变状态
+	 * @param status原因
+	 */
+	public void InsertReson(int id,Status status,String type);
+}

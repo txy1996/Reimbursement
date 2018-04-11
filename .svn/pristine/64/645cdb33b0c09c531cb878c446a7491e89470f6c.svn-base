@@ -1,0 +1,39 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.entity.Traffic;
+
+/**
+ * 调用交通表信息的实现类
+ * @author 任义平
+ *
+ */
+public class TrafficDaoImpl extends CurrencyDaoImpl<Traffic> implements TrafficDao{
+
+	@Override
+	public void Insert(Traffic traffic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Delete(Traffic traffic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Update(Traffic traffic) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Traffic> Select(Traffic traffic) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

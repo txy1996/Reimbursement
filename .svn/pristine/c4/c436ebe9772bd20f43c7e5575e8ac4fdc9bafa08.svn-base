@@ -1,0 +1,48 @@
+package com.zlt.system.service.impl;
+/**
+ * @author 刘俊泽 报销申请实现类
+ */
+import java.util.List;
+
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApplyreimService;
+
+public class ApplyreimServiceImpl implements ApplyreimService{
+
+	@Override
+	public void FindById(String num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> Reimbursement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<?> ReimbursementInfo(int id, String type) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<?> Finance(int finance_money) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void UpdateState(int id, Status status, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void InsertReson(int id, Status status, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

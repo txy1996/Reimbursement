@@ -1,0 +1,24 @@
+package com.zlt.system.service.impl;
+
+import org.apache.catalina.User;
+
+import com.zlt.system.dao.LoginDao;
+import com.zlt.system.service.LoginService;
+
+/**
+ * LoginService实现类
+ * method:login(User) 实现登录流程
+ * return:boolean
+ * @author xinzou
+ *
+ */
+public class LoginServiceImpl implements LoginService {
+
+	/**
+	 * service层Login方法实现
+	 */
+	public boolean login(User user) {
+		return false;
+	}
+
+}

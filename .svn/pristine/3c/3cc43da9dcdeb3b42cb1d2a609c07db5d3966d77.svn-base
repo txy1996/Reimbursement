@@ -1,0 +1,72 @@
+package com.zlt.system.vo;
+
+import java.util.Date;
+
+public class FinanceVo {
+	private int finance_id; 
+	private String app_abb;
+	private String emp_name;
+	private String money;
+	private String finance_status;
+	private String finance_payment;
+	public int getFinance_id() {
+		return finance_id;
+	}
+	public void setFinance_id(int finance_id) {
+		this.finance_id = finance_id;
+	}
+	public String getApp_abb() {
+		return app_abb;
+	}
+	public void setApp_abb(String app_abb) {
+		this.app_abb = app_abb;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
+	public String getFinance_status() {
+		return finance_status;
+	}
+	public void setFinance_status(String finance_status) {
+		this.finance_status = finance_status;
+	}
+	public String getFinance_payment() {
+		return finance_payment;
+	}
+	public void setFinance_payment(String finance_payment) {
+		this.finance_payment = finance_payment;
+	}
+	public FinanceVo(int finance_id, String app_abb, String emp_name, String money, String finance_status,
+			String finance_payment) {
+		super();
+		this.finance_id = finance_id;
+		this.app_abb = app_abb;
+		this.emp_name = emp_name;
+		this.money = money;
+		this.finance_status = finance_status;
+		this.finance_payment = finance_payment;
+	}
+	public FinanceVo(String app_abb) {
+		super();
+		this.app_abb = app_abb;
+	}
+	public FinanceVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "FinanceVo [finance_id=" + finance_id + ", app_abb=" + app_abb + ", emp_name=" + emp_name + ", money="
+				+ money + ", finance_status=" + finance_status + ", finance_payment=" + finance_payment + "]";
+	}
+	
+}

@@ -1,0 +1,20 @@
+package com.zlt.system.dao;
+
+import java.util.ArrayList;
+
+import com.zlt.system.entity.Reimnumtab;
+
+/**
+ * 用于个人报表生成的数据查询接口，ReimnumtabDao
+ * @author 晓煜
+ *@date 2018年1月22日22:54:37
+ *@explain 用于个人报表生成的数据查询接口
+ */
+public interface ReimnumtabDao  extends CurrencyDao{
+		/**
+		 * 
+		 * @param reimnumtab 传入报销编号表的实体类
+		 * @return 返回查询到的vo类对象集合
+		 */
+	 ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab);
+}

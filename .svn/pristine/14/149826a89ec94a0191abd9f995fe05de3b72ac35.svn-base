@@ -1,0 +1,7 @@
+package com.zlt.system.dao.impl;
+
+import com.zlt.system.dao.TestDao;
+
+public class TestDaoImpl implements TestDao {
+
+}

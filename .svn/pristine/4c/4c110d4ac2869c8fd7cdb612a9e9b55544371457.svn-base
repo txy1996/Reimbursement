@@ -1,0 +1,82 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.ApplyreimVo;
+/**
+ * 获取报销单号表信息的是实现类
+ * @author 米邓勇
+ *
+ */
+public class ReimnumtabDaoImpl extends CurrencyDaoImpl<Reimnumtab> implements ReimnumtabDao{
+
+	@Override
+	public ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * 用于会计审计的报销编号查询
+	 * @author 任义平
+	 */
+	@Override
+	public ApplyreimVo FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		String sql="SELECT b.reim_id,b.emp_name,b.department_name,b.app_abb,b.money\r\n" + 
+				"FROM(SELECT status1,status2,a.reim_id,a.emp_name,a.department_name,a.app_abb,a.money\r\n" + 
+				"FROM STATUS,\r\n" + 
+				"(SELECT reim_id,emp_name,department_name,app_abb,hotel_quarterage AS money FROM hotel\r\n" + 
+				"UNION	\r\n" + 
+				"SELECT reim_id,emp_name,department_name,app_abb,other_money AS money FROM other\r\n" + 
+				"UNION\r\n" + 
+				"SELECT reim_id,emp_name,department_name,app_abb,traffic_money AS money FROM traffic\r\n" + 
+				"UNION\r\n" + 
+				"SELECT reim_id,emp_name,department_name,app_abb,travel_money AS money FROM travel) a  \r\n" + 
+				"WHERE  status.`app_abb` IN (a.app_abb) AND status1='审批通过' AND status2='审核中') b\r\n" + 
+				"WHERE app_abb=?";
+		QueryRunner runner=new QueryRunner();	
+		ApplyreimVo apply=null;
+		try {
+			apply = runner.query(DBUtil.getConnection(), sql, new BeanHandler<ApplyreimVo>(ApplyreimVo.class),reimnumtab.getApp_add());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
+		return apply;
+	}
+	
+	/**
+	 * 用于财务表修改不同类型，显示不同内容
+	 * @author 冯杨
+	 * @param  传入app_abb报销编号参数
+	 * @return 返回一个查询到的集合
+	 */
+	@Override
+	public List<Finance> FindByApp_abb(String app_abb) {
+		// TODO Auto-generated method stub
+		List<Finance> finance = new ArrayList<>();
+		String sql = "SELECT * FROM finance WHERE app_abb LIKE ?";		
+		try {
+			finance = DBUtil.getQueryRunner().query(sql, new BeanListHandler<Finance>(Finance.class),"%"+app_abb+"%");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return finance;
+	}
+//	public static void main(String[] args) {
+//		ReimnumtabDaoImpl re=new ReimnumtabDaoImpl();
+//		List<Finance> a=re.FindByApp_abb("QT");
+//		System.out.println(a.toString());
+//	}
+}

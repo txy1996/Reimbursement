@@ -1,0 +1,47 @@
+package com.zlt.system.service.impl;
+/**
+ * 
+ */
+import java.util.List;
+
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.service.ApplyreimService;
+
+public class ApplyreimServiceImpl implements ApplyreimService{
+
+	@Override
+	public List<Employee> findAllByName(String Emp_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reimnumtab> findAllById(String number_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ReimTypeTab> findAllByType(String Reimbursementtype) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Department> findAllByDepa(String department_name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Finance> findAllByMney(int Finance_money) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+}

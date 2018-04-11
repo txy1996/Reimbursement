@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人报表</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+</head>
+<body class="body">
+
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this">网站设置</li>
+    <li>用户管理</li>
+    <li id="qa">权限分配</li>
+    <li>商品管理</li>
+    <li>订单管理</li>
+  </ul>
+  <div class="layui-tab-content" >
+    <div class="layui-tab-item layui-show">
+     <div id="main-line" style="width: 100%;height:400px;"></div> 
+    </div>
+    <div class="layui-tab-item">
+    <div>
+    <div id="main-bing" style="width: 100%;height:400px;"></div> 
+    </div>
+    
+    </div>
+    <div class="layui-tab-item">内容3</div>
+    <div class="layui-tab-item">内容4</div>
+    <div class="layui-tab-item">内容5</div>
+  </div>
+</div> 
+
+
+<!-- <form class="layui-form" action="">
+     <div id="main-line" style="width: 100%;height:400px;"></div> 
+    <div id="main-bing" style="width: 100%;height:400px;"></div> 
+</form> -->
+<script type="text/javascript" src="../frame/layui/layui.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../frame/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.2.1.js"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+/*     $(document).ready(function(){
+        shiver();
+    }); */
+    $("#qa").click.(function () {
+        $.ajax({
+            type:"post",
+            url:"../APersonalReportServlet",
+            dataType:"json",
+            data:{"type":"PieChart"},
+            success:function(data){
+                console.log(data)
+                var plc= new Array(4);
+                plc[0]=0; plc[1]=0; plc[2]=0; plc[3]=0;
+                for(var i= 0;i < data.length;i++){
+                	plc[i]=data[i]
+               		console.log(plc[i])
+               		console.log(plc[i].value)
+                }
+                 nb(plc); 
+    		}
+            })
+        })
+
+function nb (plc){
+	var dom = document.getElementById("main-bing");
+    var myChart = echarts.init(dom);
+    var app = {};
+    option = null;
+    option = {
+        title : {
+            text: '报销类型比例图',
+            subtext: '纯属虚构',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            /* data: [] */
+             data: ['其他','差旅报销','住宿报销','交通报销'] 
+        },
+        series : [
+            {
+                name: '报销类型比例',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:plc[0].value, name:plc[0].type},
+                    {value:plc[1].value, name:plc[1].type},
+                    {value:plc[2].value, name:plc[2].type},
+                    {value:plc[3].value, name:plc[3].type}, 
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    ;
+    if (option && typeof option === "object") {
+        myChart.setOption(option, true);
+    }
+    }
+   
+   
+
+
+   
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    
+    
+     $(document).ready(function(){
+        sky();
+    });
+    function sky() {
+        $.ajax({
+            type:"post",
+            url:"../APersonalReportServlet",
+            dataType:"json",
+            data:{"type":"Timeline"},
+            success:function(data){
+                console.log(data)
+                 
+    		}
+            })
+        }
+     
+    
+    var myChart = echarts.init(document.getElementById('main-line'));
+	
+    // 指定图表的配置项和数据
+    option = {
+        title : {
+            text: '报销申请记录表',
+            subtext: '纯属虚构'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['报销通过','报销未通过']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'报销通过',
+                type:'bar',
+                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'报销未通过',
+                type:'bar',
+                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+                markPoint : {
+                    data : [
+                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
+                    ]
+                }
+            }
+        ]
+    };
+    
+    $.ajax({
+        type:"post",
+        url:"../APersonalReportServlet",
+        dataType:"json",
+        data:{"type":"Timeline"},
+        success:function(data){
+            console.log(data)
+            
+        
+            myChart.setOption(option);
+		}
+        })
+
+
+    // 使用刚指定的配置项和数据显示图表。
+    
+</script>
+<script src="../frame/layui/layui.js" charset="utf-8"></script>
+<script src="../frame/layui/layui.js" charset="utf-8"></script>
+<script>
+
+        layui.use('element', function(){
+          var element = layui.element;
+          
+          //…
+        });
+        </script>
+</body>
+</html>

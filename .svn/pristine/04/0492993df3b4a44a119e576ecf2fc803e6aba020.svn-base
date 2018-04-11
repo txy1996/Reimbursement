@@ -1,0 +1,12 @@
+package com.zlt.system.entity;
+
+/**
+*审批状态实体类
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public class ApprovalStatus {
+	
+}

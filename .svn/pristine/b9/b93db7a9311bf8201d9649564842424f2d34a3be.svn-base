@@ -1,0 +1,99 @@
+package com.zlt.system.entity;
+/**
+ * 其他类型报销表的实体类
+ * @author 晓煜 知了堂项目Java三组
+ * @date 2018年1月22日21:42:48
+ * @explain 其他类型报销表的实体类
+ */
+public class Other {
+	 private int  other_id;
+	 private String  other_project;
+	 private int reim_id;
+	 private int other_money;
+	 private String other_time;
+	 private String other_reason;
+	 private String emp_name;
+	 private String other_remarks;
+	public int getOther_id() {
+		return other_id;
+	}
+	public void setOther_id(int other_id) {
+		this.other_id = other_id;
+	}
+	public String getOther_project() {
+		return other_project;
+	}
+	public void setOther_project(String other_project) {
+		this.other_project = other_project;
+	}
+	public int getReim_id() {
+		return reim_id;
+	}
+	public void setReim_id(int reim_id) {
+		this.reim_id = reim_id;
+	}
+	public int getOther_money() {
+		return other_money;
+	}
+	public void setOther_money(int other_money) {
+		this.other_money = other_money;
+	}
+	public String getOther_time() {
+		return other_time;
+	}
+	public void setOther_time(String other_time) {
+		this.other_time = other_time;
+	}
+	public String getOther_reason() {
+		return other_reason;
+	}
+	public void setOther_reason(String other_reason) {
+		this.other_reason = other_reason;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getOther_remarks() {
+		return other_remarks;
+	}
+	public void setOther_remarks(String other_remarks) {
+		this.other_remarks = other_remarks;
+	}
+	@Override
+	public String toString() {
+		return "Other [other_id=" + other_id + ", other_project=" + other_project + ", reim_id=" + reim_id
+				+ ", other_money=" + other_money + ", other_time=" + other_time + ", other_reason=" + other_reason
+				+ ", emp_name=" + emp_name + ", other_remarks=" + other_remarks + "]";
+	}
+	/**
+	 * 
+	 * @param other_id  报销类型ID，主键,自增长
+	 * @param other_project 报销项目名称
+	 * @param reim_id 报销类型编号，外键
+	 * @param other_money 报销金额
+	 * @param other_time 提交报销时间
+	 * @param other_reason 申请理由
+	 * @param emp_name 员工姓名，外键
+	 * @param other_remarks 备注
+	 */
+	public Other(int other_id, String other_project, int reim_id, int other_money, String other_time,
+			String other_reason, String emp_name, String other_remarks) {
+		super();
+		this.other_id = other_id;
+		this.other_project = other_project;
+		this.reim_id = reim_id;
+		this.other_money = other_money;
+		this.other_time = other_time;
+		this.other_reason = other_reason;
+		this.emp_name = emp_name;
+		this.other_remarks = other_remarks;
+	}
+	public Other() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	 
+}

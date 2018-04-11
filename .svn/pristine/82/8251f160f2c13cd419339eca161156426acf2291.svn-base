@@ -1,0 +1,62 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.HotelDao;
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.AccountingService;
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public class AccountingServiceImpl implements AccountingService{
+	StatusDao statusdao=new StatusDaoImpl();
+	TravelDao travelDao;
+	TrafficDao trafficDao;
+	HotelDao hotelDao;
+	OtherDao otherDao;
+
+	@Override
+	public void FindById(String num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<?> Reimbursement() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<?> ReimbursementInfo(int id, String type) {
+		if("travel".equals(type)){
+			travelDao.findById(id);
+		}
+		return null;
+	}
+
+	@Override
+	public void UpdateState(int app_id, Status status, String type) {
+		if("travel".equals(type)){
+			//根据app_id找到要改变状态的报销单
+			
+			//修改状态:update
+		}
+	}
+
+	@Override
+	public void InsertReson(int id, Status status, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

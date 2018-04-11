@@ -1,0 +1,21 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Travel;
+/**
+ * 差旅表数据的接口
+ * @author 米邓勇
+ *
+ */
+public class TravelDaoImpl extends CurrencyDaoImpl<Travel> implements TravelDao {
+
+	@Override
+	public List<?> TravelFindById(Employee employee) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

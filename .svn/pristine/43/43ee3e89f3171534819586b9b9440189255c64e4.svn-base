@@ -1,0 +1,38 @@
+package com.zlt.system.dao;
+/**
+ * 刘俊泽 知了堂 java三组
+ * 2018年1月23日8:19 
+ * 用于操报销申请审批多表查询的接口
+ */
+import java.util.List;
+
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.vo.ApplyreimVo;
+
+public interface ApplyreimDao {
+	/**
+	 * 用于全查
+	 * 查询员工姓名
+	 * 查询报销单号
+	 * 查询报销类型
+	 * 查询部门
+	 * 查询金额
+	 * @return
+	 */
+public List<Employee> findAllByName(String Emp_name0 );
+	
+	public List<Reimnumtab> findAllById(String number_id);
+	
+	public List<ReimTypeTab> findAllByType(String Reimbursementtype);
+	
+	public List<Department> findAllByDepa(String department_name);
+	
+	public List<Finance> findAllByMney(int Finance_money);
+	
+	
+	
+}

@@ -1,0 +1,73 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.HotelDao;
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.AccountingService;
+import com.zlt.system.vo.ApplyreimVo;
+import com.zlt.system.vo.InfoVo;
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public class AccountingServiceImpl implements AccountingService{
+	StatusDao statusdao;
+	TravelDao traveldao;
+	TrafficDao trafficdao;
+	HotelDao hoteldao;
+	OtherDao otherdao;
+	ReimnumtabDao reimnumtabdao;
+	/**
+	 * 通过编号
+	 */
+	@Override
+	public void FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		reimnumtabdao.FindById(reimnumtab);
+	}
+
+	@Override
+	public List<ApplyreimVo> Reimbursement() {
+		// TODO Auto-generated method stub		
+		return statusdao.FindByStatus();
+	}
+
+	@Override
+	public InfoVo ReimbursementInfo(String app_abb, String type) {
+		InfoVo infovo=null;
+		if("travel".equals(type)){
+			infovo.setTravelinfo(traveldao.FindByType(app_abb, type));
+		}else if("traffic".equals(type)) {
+			infovo.setTrafficinfo(trafficdao.FindByType(app_abb, type));
+		}else if("other".equals(type)) {
+			infovo.setOtherinfo(otherdao.FindByType(app_abb, type));
+		}else if("hotel".equals(type)) {
+			infovo.setHotelinfo(hoteldao.FindByType(app_abb, type));
+		}
+		return infovo;
+	}
+	/**
+	 * 审批通过后更新状态和意见
+	 */
+	@Override
+	public void UpdateState(Status status) {
+		statusdao.UpdateStatus(status);
+	}
+
+	@Override
+	public void InsertReson(Status status) {
+		// TODO Auto-generated method stub
+		statusdao.UpdateOpinion(status);
+	}
+	
+}

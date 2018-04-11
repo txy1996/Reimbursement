@@ -1,0 +1,38 @@
+package com.zlt.system.dao;
+import java.util.List;
+
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.vo.ApplyreimVo;
+import com.zlt.system.vo.HotelInfoVo;
+/**
+ * 调用住宿类型报销表信息的接口
+ * @author 米邓勇
+ *
+ */
+public interface HotelDao  extends CurrencyDao<Hotel>{
+	/**
+	 * 根据员工姓名查询对应的表的信息 :唐晓煜
+	 * @param employee 传入员工表对象 具体信息：姓名
+	 * @return 返回住宿具体信息
+	 */
+	List<?> HotelFindById(Employee employee);
+	/**
+	 * @author 任义平
+	 * 用于住宿补助详情查询
+	 * @param app_abb
+	 * @param type
+	 * @return
+	 */
+	public HotelInfoVo FindByType(String app_abb);
+	/**
+	 * 住宿类型报销
+	 * @author 刘俊泽
+	 * @param app_abb
+	 * @param type
+	 * @return
+	 */
+	public HotelInfoVo FindBytype(String app_abb);
+	
+	
+}

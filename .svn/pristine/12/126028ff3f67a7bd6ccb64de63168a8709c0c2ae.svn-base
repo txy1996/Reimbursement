@@ -1,0 +1,36 @@
+package com.zlt.system.dao;
+
+
+import java.util.List;
+
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.vo.TrafficInfoVo;
+/**
+ * 调用交通表数据的接口
+ * @author 米邓勇
+ *
+ */
+public interface TrafficDao  extends CurrencyDao<Traffic>{
+	/**
+	 * 根据员工姓名查询对应的表的信息 :唐晓煜
+	 * @param employee 传入员工表对象 具体信息：姓名
+	 * @return 返回交通类具体信息
+	 */
+	 List<?> TrafficFindById(Employee employee);
+	 /**
+	  * @author 任义平
+	  * @param app_abb报销编号
+	  * @param type报销类型
+	  * @return
+	  */
+	 public TrafficInfoVo FindByType(String app_abb);
+	 /**
+	  * 交通类型报销
+	  * @author 刘俊泽
+	  * @param app_abb
+	  * @param type
+	  * @return
+	  */
+	 public TrafficInfoVo FindByElse(String app_abb);
+}

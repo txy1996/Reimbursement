@@ -1,0 +1,89 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 部门表实体类
+ * @author 米邓勇
+ *
+ */
+@Bean("department")
+public class Department {
+	@Id("department_id")
+	private int id;
+	
+	@Column("department_name")
+	private String name;
+	
+	@Column("department_address")
+	private String address;
+	
+	@Column("department_type")
+	private String type;
+	
+	@Column("department_budget")
+	private String bugget;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getBugget() {
+		return bugget;
+	}
+
+	public void setBugget(String bugget) {
+		this.bugget = bugget;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + ", address=" + address + ", type=" + type + ", bugget="
+				+ bugget + "]";
+	}
+
+	public Department(int id, String name, String address, String type, String bugget) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.type = type;
+		this.bugget = bugget;
+	}
+
+	public Department() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

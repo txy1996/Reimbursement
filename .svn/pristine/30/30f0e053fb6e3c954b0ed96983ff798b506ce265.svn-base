@@ -1,0 +1,65 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 报销类型表的实体类
+ * @author 米邓勇
+ *
+ */
+@Bean("reimtypetab")
+public class ReimTypeTab {
+	@Id("reim_id")
+	private int id;
+	
+	@Column("reim_type")
+	private String type;
+	
+	@Column("reim_abb")
+	private String abb;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getAbb() {
+		return abb;
+	}
+
+	public void setAbb(String abb) {
+		this.abb = abb;
+	}
+
+	@Override
+	public String toString() {
+		return "ReimTypeTab [id=" + id + ", type=" + type + ", abb=" + abb + "]";
+	}
+
+	public ReimTypeTab(int id, String type, String abb) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.abb = abb;
+	}
+
+	public ReimTypeTab() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

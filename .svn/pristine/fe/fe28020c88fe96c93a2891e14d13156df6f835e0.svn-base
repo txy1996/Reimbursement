@@ -1,0 +1,36 @@
+package com.zlt.system.dao;
+
+import java.util.ArrayList;
+
+import com.zlt.system.entity.Status;
+
+/**
+*审批状态Dao类
+*包含insert、selectAll、update四个方法接口
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public interface StatusDao  extends CurrencyDao{
+
+	/**
+	 * 增加申请方法接口
+	 */
+	//public int insert(Status approvalStatus);
+	
+	/**
+	 * 查询申请方法接口
+	 */
+	public ArrayList<Status> selectAll();
+	
+	/**
+	 * 修改申请状态方法接口
+	 */
+	public int update(Status approvalStatus);
+	
+	/**
+	 * 查询详情方法接口
+	 */
+	public Status selectDetails(int ApproId);
+}

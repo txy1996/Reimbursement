@@ -1,0 +1,81 @@
+package com.zlt.system.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.vo.ApplyreimVo;
+import com.zlt.system.vo.CompanyInfoVo;
+import com.zlt.system.vo.DepartNameVo;
+import com.zlt.system.vo.DepartmentInfoVo;
+import com.zlt.system.vo.GetMaxMoneyVo;
+import com.zlt.system.vo.GetTimeVo;
+
+/**
+ * 用于个人报表生成的数据查询接口，ReimnumtabDao
+ * @author 晓煜
+ *@date 2018年1月22日22:54:37
+ *@explain 用于个人报表生成的数据查询接口
+ */
+public interface ReimnumtabDao  extends CurrencyDao<Reimnumtab>{
+		/**
+		 * 
+		 * @param reimnumtab 传入报销编号表的实体类
+		 * @return 返回查询到的vo类对象集合
+		 */
+	 ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab);
+	 /**
+	  * 通过报销编号查询
+	  * @author 任义平
+	  * @param reimnumtab
+	 * @throws SQLException 
+	  */
+	 public ApplyreimVo FindById(Reimnumtab reimnumtab);
+
+	 /**
+	  * 此方法用于获取报表的具体年份信息
+	  * @2018年1月26日
+	  * @List<GetTimeVo>
+	  * @author 米邓勇
+	  */
+	 public List<GetTimeVo> findTime();
+	 /**
+	  * 此方法用于获取部门的报销信息
+	  * @2018年1月26日
+	  * @List<DepartmentInfoVo>
+	  * @findDepartmentInfo
+	  * @author 米邓勇
+	  */
+	 public List<DepartmentInfoVo> findDepartmentInfo(int year,String depart);
+	 /**
+	  * 实现对于公司的报销信息
+	  * @2018年1月26日
+	  * @List<CompanyInfoVo>
+	  * @findCompanyInfo
+	  * @author 米邓勇
+	  */
+	 public List<CompanyInfoVo> findCompanyInfo(int year);
+
+	 /**
+	  * @author 刘俊泽
+	  * 根据名字查询
+	  * @param reimnumtab
+	  * @return
+	  */
+	 public ApplyreimVo FinByID(Reimnumtab reimnumtab);
+	 /**
+	  * 查询指定员工的部门名称
+	  * @2018年1月26日
+	  * @String
+	  * @findDepart
+	  */
+	 public DepartNameVo findDepart(String name);
+	 /**
+	  * 根据员工姓名获取报销的最大限额
+	  * @2018年1月27日
+	  * @GetMaxMoneyVo
+	  * @findLevel
+	  */
+	 public GetMaxMoneyVo findLevel(String name);
+}

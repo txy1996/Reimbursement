@@ -1,0 +1,127 @@
+package com.zlt.system.entity;
+/**
+ * 
+ * @author 晓煜 知了堂项目Java三组
+ *@date 2018年1月22日22:23:43
+ *@explain 住宿报销的实体类
+ */
+public class Hotel {
+	private int hotel_id;
+	private int reim_id;
+	private String emp_name;
+	private String hotel_first;
+	private String hotel_finish;
+	private String hotel_site;
+	private int hotel_days;
+	private String hotel_people;
+	private String hotel_Other;
+	private String hotel_quarterage;
+	private String hotel_remarks;
+	public int getHotel_id() {
+		return hotel_id;
+	}
+	public void setHotel_id(int hotel_id) {
+		this.hotel_id = hotel_id;
+	}
+	public int getReim_id() {
+		return reim_id;
+	}
+	public void setReim_id(int reim_id) {
+		this.reim_id = reim_id;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public String getHotel_first() {
+		return hotel_first;
+	}
+	public void setHotel_first(String hotel_first) {
+		this.hotel_first = hotel_first;
+	}
+	public String getHotel_finish() {
+		return hotel_finish;
+	}
+	public void setHotel_finish(String hotel_finish) {
+		this.hotel_finish = hotel_finish;
+	}
+	public String getHotel_site() {
+		return hotel_site;
+	}
+	public void setHotel_site(String hotel_site) {
+		this.hotel_site = hotel_site;
+	}
+	public int getHotel_days() {
+		return hotel_days;
+	}
+	public void setHotel_days(int hotel_days) {
+		this.hotel_days = hotel_days;
+	}
+	public String getHotel_people() {
+		return hotel_people;
+	}
+	public void setHotel_people(String hotel_people) {
+		this.hotel_people = hotel_people;
+	}
+	public String getHotel_Other() {
+		return hotel_Other;
+	}
+	public void setHotel_Other(String hotel_Other) {
+		this.hotel_Other = hotel_Other;
+	}
+	public String getHotel_quarterage() {
+		return hotel_quarterage;
+	}
+	public void setHotel_quarterage(String hotel_quarterage) {
+		this.hotel_quarterage = hotel_quarterage;
+	}
+	public String getHotel_remarks() {
+		return hotel_remarks;
+	}
+	public void setHotel_remarks(String hotel_remarks) {
+		this.hotel_remarks = hotel_remarks;
+	}
+	@Override
+	public String toString() {
+		return "Hotel [hotel_id=" + hotel_id + ", reim_id=" + reim_id + ", emp_name=" + emp_name + ", hotel_first="
+				+ hotel_first + ", hotel_finish=" + hotel_finish + ", hotel_site=" + hotel_site + ", hotel_days="
+				+ hotel_days + ", hotel_people=" + hotel_people + ", hotel_Other=" + hotel_Other + ", hotel_quarterage="
+				+ hotel_quarterage + ", hotel_remarks=" + hotel_remarks + "]";
+	}
+	public Hotel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * 
+	 * @param hotel_id 类型ID，主键,自增长
+	 * @param reim_id 报销类型编号，外键
+	 * @param emp_name 员工姓名，外键
+	 * @param hotel_first 起始日期
+	 * @param hotel_finish  结束日期
+	 * @param hotel_site  地点
+	 * @param hotel_days 天数
+	 * @param hotel_people 是否多人
+	 * @param hotel_Other  其他人员
+	 * @param hotel_quarterage  住宿总金额 
+	 * @param hotel_remarks 备注
+	 */
+	public Hotel(int hotel_id, int reim_id, String emp_name, String hotel_first, String hotel_finish, String hotel_site,
+			int hotel_days, String hotel_people, String hotel_Other, String hotel_quarterage, String hotel_remarks) {
+		super();
+		this.hotel_id = hotel_id;
+		this.reim_id = reim_id;
+		this.emp_name = emp_name;
+		this.hotel_first = hotel_first;
+		this.hotel_finish = hotel_finish;
+		this.hotel_site = hotel_site;
+		this.hotel_days = hotel_days;
+		this.hotel_people = hotel_people;
+		this.hotel_Other = hotel_Other;
+		this.hotel_quarterage = hotel_quarterage;
+		this.hotel_remarks = hotel_remarks;
+	}
+	
+} 

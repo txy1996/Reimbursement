@@ -1,0 +1,57 @@
+package com.zlt.system.dao.impl;
+
+import java.util.ArrayList;
+
+import com.zlt.system.dao.ApprovalStatusDao;
+import com.zlt.system.entity.ApprovalStatus;
+
+/**
+*ApprovalStatusDao实现类
+*包含增、改、查方法
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public class ApprovalStatusDaoImpl implements ApprovalStatusDao {
+
+	/**
+	 * 增加申请方法
+	 * return:增加条数
+	 */ 
+	public int insert(ApprovalStatus approvalStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	/**
+	 * 查询申请状态方法
+	 * return:返回结果集
+	 */
+	public ArrayList<ApprovalStatus> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 修改申请状态方法
+	 * return:返回修改条数
+	 */
+	public int update(ApprovalStatus approvalStatus) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	/**
+	 * 查看详情方法
+	 * return:返回申请状态对象
+	 */
+	@Override
+	public ApprovalStatus selectDetails(int ApproId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

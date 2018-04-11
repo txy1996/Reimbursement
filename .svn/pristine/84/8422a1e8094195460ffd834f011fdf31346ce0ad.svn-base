@@ -1,0 +1,7 @@
+package com.zlt.system.service.impl;
+
+import com.zlt.system.service.TestService;
+
+public class TestServiceImpl implements TestService{
+
+}

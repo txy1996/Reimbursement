@@ -1,0 +1,32 @@
+package com.zlt.system.dao;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.vo.ApplyreimVo;
+
+/**
+ * 用于个人报表生成的数据查询接口，ReimnumtabDao
+ * @author 晓煜
+ *@date 2018年1月22日22:54:37
+ *@explain 用于个人报表生成的数据查询接口
+ */
+public interface ReimnumtabDao  extends CurrencyDao<Reimnumtab>{
+		/**
+		 * 
+		 * @param reimnumtab 传入报销编号表的实体类
+		 * @return 返回查询到的vo类对象集合
+		 */
+	 ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab);
+	 /**
+	  * 通过报销编号查询
+	  * @author 任义平
+	  * @param reimnumtab
+	 * @throws SQLException 
+	  */
+	 public ApplyreimVo FindById(Reimnumtab reimnumtab);
+	 
+}

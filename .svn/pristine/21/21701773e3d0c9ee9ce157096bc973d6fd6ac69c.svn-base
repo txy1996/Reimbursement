@@ -1,0 +1,93 @@
+package com.zlt.system.servlet;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.service.impl.FinanceServiceImpl;
+import com.zlt.system.service.impl.ReimnumrabServiceImpl;
+import com.zlt.system.vo.ApplyreimVo;
+
+/**
+ * Servlet implementation class FinanceServlet
+ */
+@WebServlet("/FinanceServlet")
+public class FinanceServlet extends HttpServlet {
+	FinanceServiceImpl fsl=new FinanceServiceImpl();
+	ReimnumrabServiceImpl rsl=new ReimnumrabServiceImpl();
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FinanceServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String type=request.getParameter("type");
+		if("findall".equals(type)){
+			System.out.println(type);
+			FindAll(request, response);
+		}else if("delete".equals(type)){
+			delete(request, response);
+		}else if("a".equals(type)){
+			System.out.println(type);
+			check(request, response);
+		}
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
+	private void FindAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Finance> list=fsl.FinanceFindAll();
+		List<ReimTypeTab> qqq= rsl.FindAll();
+		request.setAttribute("list", list);
+		//request.setAttribute("qqq", qqq);
+		request.getRequestDispatcher("demo/Finance.jsp").forward(request, response);
+	}
+	
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int a=Integer.parseInt(request.getParameter("delete"));
+		fsl.FinanceDelete(a);
+		FindAll(request, response);
+	}
+
+	
+	private void check(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		String a=request.getParameter("name");
+//		if(a.equals("CL")||a.equals("QT")||a.equals("ZS")||a.equals("JT")){
+//			List<Finance> aaa=rsl.FindByApp_abb(a);
+//			
+//			request.setAttribute("list", aaa);
+//			request.getRequestDispatcher("demo/Finance.jsp").forward(request, response);
+//		
+//		}else{
+//			FindAll(request, response);
+//		}
+		
+		
+	}
+	
+
+
+}

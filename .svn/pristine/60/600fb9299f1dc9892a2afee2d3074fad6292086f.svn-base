@@ -1,0 +1,164 @@
+
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.ApplyreimVo;
+import com.zlt.system.vo.CompanyInfoVo;
+import com.zlt.system.vo.DepartmentInfoVo;
+import com.zlt.system.vo.GetTimeVo;
+/**
+ * 获取报销单号表信息的是实现类
+ * @author 米邓勇
+ *
+ */
+public class ReimnumtabDaoImpl extends CurrencyDaoImpl<Reimnumtab> implements ReimnumtabDao{
+
+	@Override
+	public ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * 用于会计审计的报销编号查询
+	 * @author 任义平
+	 */
+	@Override
+	public ApplyreimVo FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		String sql="SELECT b.reim_type,b.emp_name,b.department_name,b.app_abb,b.money\r\n" + 
+				"FROM(SELECT status1,status2,a.reim_type,a.emp_name,a.department_name,a.app_abb,a.money\r\n" + 
+				"FROM STATUS,\r\n" + 
+				"(SELECT reim_type,emp_name,department_name,app_abb,hotel_quarterage AS money FROM hotel,reimtypetab WHERE hotel.`reim_id`=reimtypetab.`reim_id`\r\n" + 
+				"UNION	\r\n" + 
+				"SELECT reim_type,emp_name,department_name,app_abb,other_money AS money FROM other,reimtypetab WHERE other.`reim_id`=reimtypetab.`reim_id`\r\n" + 
+				"UNION\r\n" + 
+				"SELECT reim_type,emp_name,department_name,app_abb,traffic_money AS money FROM traffic,reimtypetab WHERE traffic.`reim_id`=reimtypetab.`reim_id`\r\n" + 
+				"UNION\r\n" + 
+				"SELECT reim_type,emp_name,department_name,app_abb,travel_money AS money FROM travel,reimtypetab WHERE travel.`reim_id`=reimtypetab.`reim_id`) a  \r\n" + 
+				"WHERE  status.`app_abb` IN (a.app_abb) AND status1='审批通过' AND status2='审核中') b\r\n" + 
+				"WHERE app_abb=?";
+		QueryRunner runner=new QueryRunner();	
+		ApplyreimVo apply=null;
+		try {
+			apply = runner.query(DBUtil.getConnection(), sql, new BeanHandler<ApplyreimVo>(ApplyreimVo.class),reimnumtab.getApp_abb());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
+		return apply;
+	}
+
+	/**
+	 * 实现获取时间数据
+	 * @author 米邓勇
+	 */
+	@Override
+	public List<GetTimeVo> findTime() {
+		List<GetTimeVo> list = null;
+		String sql = "SELECT  TIME FROM "
+				+"(SELECT reim_id,emp_name,department_name,YEAR(traffic_time) AS TIME FROM traffic"
+				+" UNION "
+				+"SELECT reim_id,emp_name,department_name,YEAR(travel_time) AS TIME FROM  travel"
+				+" UNION "
+				+"SELECT reim_id,emp_name,department_name,YEAR(other_time) AS TIME FROM other"
+				+" UNION "
+				+"SELECT reim_id,emp_name,department_name,YEAR(hotel_time) AS TIME FROM  hotel"
+				+") AS m "
+				+"GROUP BY TIME";
+		try {
+			System.out.println(sql.toString());
+			list =DBUtil.getQueryRunner().query(sql, new BeanListHandler<GetTimeVo>(GetTimeVo.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	@Override
+	public List<DepartmentInfoVo> findDepartmentInfo(int year) {
+		String sql = "SELECT reimtypetab.`reim_type` AS TYPE,COUNT(m.reim_id) AS num FROM "
+				+"(SELECT reim_id,emp_name,department_name,YEAR(traffic_time) AS TIME FROM traffic"
+				+"  UNION "
+				+" SELECT reim_id,emp_name,department_name,YEAR(travel_time) AS TIME FROM  travel"
+				+"  UNION "
+				+" SELECT reim_id,emp_name,department_name,YEAR(other_time) AS TIME FROM other"
+				+"  UNION "
+				+"SELECT reim_id,emp_name,department_name,YEAR(hotel_time) AS TIME FROM  hotel"
+				+") AS m ,reimtypetab"
+				+" WHERE m.reim_id = reimtypetab.`reim_id`"
+				+" GROUP BY m.reim_id,TIME "
+				+" HAVING m.time = ?";
+		List<DepartmentInfoVo> list = null;
+		try {
+			list = DBUtil.getQueryRunner().query(sql, new BeanListHandler<DepartmentInfoVo>(DepartmentInfoVo.class),year);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+	/**
+	 * 实现对于公司报销数据的查询
+	 * @author 米邓勇
+	 */
+	@Override
+	public List<CompanyInfoVo> findCompanyInfo(int year) {
+		String sql = "SELECT department_name as department,reimtypetab.`reim_type` AS TYPE,COUNT(m.reim_id) AS num   FROM "
+				+"(SELECT reim_id,emp_name,department_name,YEAR(traffic_time) AS TIME FROM traffic"
+				+"  UNION "
+				+" SELECT reim_id,emp_name,department_name,YEAR(travel_time) AS TIME FROM  travel"
+				+"  UNION "
+				+" SELECT reim_id,emp_name,department_name,YEAR(other_time) AS TIME FROM other"
+				+"  UNION "
+				+"  SELECT reim_id,emp_name,department_name,YEAR(hotel_time) AS TIME FROM  hotel"
+				+" ) AS m ,reimtypetab"
+				+" WHERE m.reim_id = reimtypetab.`reim_id` "
+				+" GROUP BY m.department_name,m.reim_id,TIME "
+				+" HAVING m.time = ?";
+		List<CompanyInfoVo> list = null;
+		try {
+			list = DBUtil.getQueryRunner().query(sql, new BeanListHandler<CompanyInfoVo>(CompanyInfoVo.class),year);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	/**
+	 * @author 刘俊泽
+	 * 根据报销单号查询
+	 */
+	@Override
+	public ApplyreimVo FinByID(Reimnumtab reimnumtab){
+		String sql="";
+		QueryRunner runner=new QueryRunner();	
+		ApplyreimVo abbly=null;
+		try {
+			abbly = runner.query(DBUtil.getConnection(), sql, new BeanHandler<ApplyreimVo>(ApplyreimVo.class),reimnumtab.getApp_abb());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}			
+		return abbly;
+	}
+
+	
+	
+/*	public static void main(String[] args) {
+		ReimnumtabDaoImpl re=new ReimnumtabDaoImpl();
+		Reimnumtab reimnumtab=new Reimnumtab();
+		reimnumtab.setApp_abb("JT10000");
+		System.out.println(re.FindById(reimnumtab));
+	}*/
+}

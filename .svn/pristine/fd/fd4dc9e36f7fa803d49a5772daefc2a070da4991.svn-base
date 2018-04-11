@@ -1,0 +1,68 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.HotelDao;
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.AccountingService;
+import com.zlt.system.vo.ApplyreimVo;
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public class AccountingServiceImpl implements AccountingService{
+	StatusDao statusdao;
+	TravelDao travelDao;
+	TrafficDao trafficDao;
+	HotelDao hotelDao;
+	OtherDao otherDao;
+	ReimnumtabDao reimnumtabdao;
+	/**
+	 * 通过编号
+	 */
+	@Override
+	public void FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		reimnumtabdao.FindById(reimnumtab);
+	}
+
+	@Override
+	public List<ApplyreimVo> Reimbursement() {
+		// TODO Auto-generated method stub
+		statusdao.FindByStatus();
+		return null;
+	}
+
+	@Override
+	public List<?> ReimbursementInfo(String app_abb, String type) {
+		if("travel".equals(type)){
+			travelDao.findById(app_abb);
+		}
+		return null;
+	}
+
+	@Override
+	public void UpdateState(int app_id, Status status, String type) {
+		if("travel".equals(type)){
+			//根据app_id找到要改变状态的报销单
+			
+			//修改状态:update
+		}
+	}
+
+	@Override
+	public void InsertReson(int id, Status status, String type) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

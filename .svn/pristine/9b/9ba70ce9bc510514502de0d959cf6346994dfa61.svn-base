@@ -1,0 +1,30 @@
+package com.zlt.system.dao;
+
+import java.util.List;
+
+import com.zlt.system.entity.Finance;
+
+/*
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月22日20:20
+ * @explain 此接口用于对财务表的增删改查的操作
+ * 
+ */
+public interface FinanceDao {
+/*
+* @return 返回查询的财务信息集合
+* @explain 此方法查询财务表所有信息 
+*/
+	List<Finance> FindAll();
+
+/*
+ * @return 返回根据id查询到的信息的集合
+ * @explain 此方法根据id查询财务表信息
+ */
+	List<Finance>FindById();
+	
+/*
+ * @explain 此方法用于删除财务表的信息
+ */
+	void deleteById(int id);
+}

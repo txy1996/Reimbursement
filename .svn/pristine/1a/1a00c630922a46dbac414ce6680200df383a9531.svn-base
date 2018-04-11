@@ -1,0 +1,20 @@
+package com.zlt.system.dao.impl;
+
+import java.util.ArrayList;
+
+import com.zlt.system.dao.ReimnumtabDao;
+import com.zlt.system.entity.Reimnumtab;
+/**
+ * 获取报销单号表信息的是实现类
+ * @author 米邓勇
+ *
+ */
+public class ReimnumtabDaoImpl extends CurrencyDaoImpl<Reimnumtab> implements ReimnumtabDao{
+
+	@Override
+	public ArrayList<?> ReimnumtabDao(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

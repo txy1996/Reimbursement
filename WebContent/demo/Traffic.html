@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>详情填写</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+    <script type="text/javascript" src="../layer/jquery.min.js" ></script> 
+</head>
+<body class="body">
+
+<form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工姓名</label>
+        <div class="layui-input-inline">
+            <input type="text" name="emp" id="emp" readonly lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <label class="layui-form-label">所在部门</label>
+        <div class="layui-input-inline">
+            <input type="text" name="department" readonly id="department" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline"  >
+                <select id="select" name="select">
+                    <option value="1" disabled>差旅</option>
+                    <option value="2" >交通</option>
+                    <option value="3" disabled>住宿</option>
+                    <option value="4" disabled >其他</option>
+                </select>
+               
+            </div>  
+        </div>
+        <div class="layui-form-item">
+        <label class="layui-form-label">所属项目</label>
+        <div class="layui-input-inline">
+            <input type="text" name="project" id="project" lay-verify="required" placeholder="请输入" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出差地</label>
+        
+                <div class="layui-input-block">
+                    <input type="text" name="address" id="address" autocomplete="off" placeholder="请输入地点" lay-verify="required"
+                           class="layui-input">
+                </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">出差开始时间</label>
+        <div class="layui-input-inline">
+                <input type="text" name="startdate" id="startdate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
+        <label class="layui-form-label">出差结束时间</label>
+        <div class="layui-input-inline">
+                <input type="text" name="enddate" id="enddate" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
+        
+               
+    </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label">出行方式</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="travel" id="travel" lay-verify="required" placeholder="请输入" autocomplete="off"
+                           class="layui-input">
+                </div>
+            </div>
+    <div class="layui-form-item">
+    <label class="layui-form-label" id="div_money">费用总额</label>       
+    <div class="layui-input-inline" style="width: 100px;">
+        <input type="text" name="money" id="money" placeholder="￥" autocomplete="off" class="layui-input">
+    </div>
+    <span id="span_money" ></span>
+</div> 
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+ 		<div class="layui-input-block">
+     		 <textarea name="desc" placeholder=请输入 id="content" class="layui-textarea"></textarea>
+  		</div>
+    </div>
+    
+    <div class="layui-form-item">
+        <button class="layui-btn" lay-submit="" id="btn" lay-filter="sub">提交</button>
+    </div>
+</form>
+
+<script src="../frame/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+		url:"../NewAppcationServlet",
+		type:"post",
+		dataType:"json",
+		data:{"type":"find"},
+		success:function(data){
+			//alert(data.name)
+			$("#emp").val(data.name);
+			$("#department").val(data.department);
+		},error:function(){
+			alert("连接失败！")
+		}
+	})
+})
+var flag = 0;
+$("#money").blur(function(){
+			 if($("#money").val() != ""){
+				 var money = $("#money").val();
+				 if(parseInt(money)==money && 0<parseInt(money)){
+					 $.ajax({
+						 url:"../NewAppcationServlet",
+						 type:"post",
+						 dataType:"json",
+						 data:{"type":"money","emp":$("#emp").val()},
+						 success:function(data){
+							 //alert(data.money1);
+							 //alert(money);
+							 var m=data.money1;
+							// alert(parseInt(money)<=parseInt(m));
+							 if(parseInt(money)<=parseInt(m)){
+								 $("#span_money").text("输入金额符合规范").css("color","green");
+								 flag = 1;
+								 //alert(1)
+							 }else{
+								 $("#span_money").text("输入金额超出范围，请重新选择！").css("color","red");
+								 //alert(2)
+							 }
+						 },error:function(){
+							 alert("连接失败！")
+						 }
+					 })
+					 
+				 }else{
+					// alert(money);
+					 $("#span_money").text('输入数据错误').css("color","red");
+				 }
+			 }else{
+				 $("#span_money").text("");
+			 }
+		 });
+
+   /*  $("#btn").click(function(){
+        $.ajax({
+                type:"post",
+                dataType:"json",
+                url:"../NewAppcationServlet",
+                data:{"type":"traffic","emp":$("#emp").val(),"department":$("#department").val(),"select":$("#select").val(),
+                "project":$("#project").val(),"startdate":$("#startdate").val(),"enddate":$("#enddate").val(),
+                "travel":$("#travel").val(),"address":$("#address").val(),"money":$("#money").val(),"content":$("#content").val()},
+                success:function(data){
+                	 if(data.status == 1){
+                     	layer.open({
+                     		 type:2,
+                     	     title:'票据上传',
+                     	     shadeClose:true,
+                     	     shade:0.5,
+                     	     area:['80%','80%'],
+                     	     content:'UpImg.jsp?id='+data.id+'',//'UpImg.jsp?id=30004'
+                     	     end: function () {
+                     	    	 location.href='Submit.html';
+                     	    	 }
+                     	 });
+                     }
+                },error:function(){
+                    alert("连接失败！")
+                }
+           });
+    }) */
+function btn(){
+	 $.ajax({
+         type:"post",
+         dataType:"json",
+         url:"../NewAppcationServlet",
+         data:{"type":"traffic","emp":$("#emp").val(),"department":$("#department").val(),"select":$("#select").val(),
+         "project":$("#project").val(),"startdate":$("#startdate").val(),"enddate":$("#enddate").val(),
+         "travel":$("#travel").val(),"address":$("#address").val(),"money":$("#money").val(),"content":$("#content").val()},
+         success:function(data){
+         	 if(data.status == 1){
+              	layer.open({
+              		 type:2,
+              	     title:'票据上传',
+              	     shadeClose:true,
+              	     shade:0.5,
+              	     area:['80%','80%'],
+              	     content:'UpImg.jsp?id='+data.id+'',//'UpImg.jsp?id=30004'
+              	     end: function () {
+              	    	 location.href='Submit.html';
+              	    	 }
+              	 });
+              }
+         },error:function(){
+             alert("连接失败！")
+         }
+    });
+   }
+    layui.use(['form', 'layedit', 'laydate', 'element'], function () {
+        var form = layui.form
+                , layer = layui.layer
+                , layedit = layui.layedit
+                , laydate = layui.laydate
+                , element = layui.element;
+         laydate.render({
+         elem: '#startdate'
+        	 ,done: function(value, date, endDate){
+             	date1();
+                /*  console.log(value); //得到日期生成的值，如：2017-08-18
+                 console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                 console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。 */
+               }
+        });
+         function date1(){
+            	 //alert("cc")
+            	 laydate.render({
+            		 min: $("#startdate").val()
+                     ,elem: '#enddate'
+                     ,done: function(value, date, endDate){
+                     	
+                       }
+                 });
+         }
+        
+        
+/*         //创建一个编辑器
+        var editIndex = layedit.build('content'); */
+
+        /* //自定义验证规则
+        form.verify({
+            title: function (value) {
+                if (value.length < 5) {
+                    return '标题至少得5个字符啊';
+                }
+            }
+            , pass: [/(.+){6,12}$/, '密码必须6到12位']
+            , content: function (value) {
+                layedit.sync(editIndex);
+            }
+        }); */
+		
+       
+        //监听提交
+        form.on('submit(sub)', function (data) {
+        	if(flag == 1){
+        		btn();
+        	}else{
+        		alert("请重新检查输入！")
+        	}
+        	/* layer.open({
+                 content: '是否需要进行报销单的添加？'
+                 ,btn: ['确定', '取消']
+                 ,btn1: function(index, layero){
+                      //按钮【确定】的回调
+                	 window.location.href="UpImg.html";
+                 }
+                  ,btn2: function(index, layero){
+                     //按钮【取消】的回调
+                       window.location.href="Submit.html";
+                      //return false 开启该代码可禁止点击该按钮关闭
+                 }
+                  ,cancel: function(){ 
+                     //右上角关闭回调
+                      window.location.href="Submit.html";
+                      //return false 开启该代码可禁止点击该按钮关闭
+                  }
+             }); */
+            return false;
+        });
+
+        // you code ...
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+package com.zlt.system.dao;
+
+import java.util.List;
+
+import com.zlt.system.entity.Traffic;
+
+/**
+ * 调用交通表数据的接口
+ * @author 任义平
+ *
+ */
+public interface TrafficDao  extends CurrencyDao{
+	/**
+	 * 交通报销填写
+	 * @param traffic
+	 */
+	public void Insert(Traffic traffic);
+	/**
+	 * 交通报销删除
+	 * @param traffic
+	 */
+	public void Delete(Traffic traffic);
+	/**
+	 * 交通报销修改
+	 * @param traffic
+	 */
+	public void Update(Traffic traffic);
+	/**
+	 * 交通报销查询
+	 * @param traffic
+	 * @return
+	 */
+	public List<Traffic> Select(Traffic traffic);
+}

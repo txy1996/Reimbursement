@@ -1,0 +1,9 @@
+package com.zlt.system.dao;
+/**
+ * 调用交通表数据的接口
+ * @author 米邓勇
+ *
+ */
+public interface TrafficDao  extends CurrencyDao{
+
+}

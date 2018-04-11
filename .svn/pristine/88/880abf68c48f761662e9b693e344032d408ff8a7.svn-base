@@ -1,0 +1,21 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.HotelDao;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Hotel;
+/**
+ * 住宿报销表的实现类
+ * @author 米邓勇
+ *
+ */
+public class HotelDaoImpl extends CurrencyDaoImpl<Hotel> implements HotelDao{
+
+	@Override
+	public List<?> HotelFindById(Employee employee) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

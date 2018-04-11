@@ -1,0 +1,13 @@
+package com.zlt.system.dao;
+
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Traffic;
+
+/**
+ * 调用报销类型数据的接口
+ * @author 米邓勇
+ *
+ */
+public interface ReimTypeTabDao  extends CurrencyDao<ReimTypeTab>{
+
+}

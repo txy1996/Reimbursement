@@ -1,0 +1,20 @@
+package com.zlt.system.service;
+
+import java.util.List;
+
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.vo.Line;
+import com.zlt.system.vo.MainVo;
+
+/**
+ * 此接口是用于对财务表选择报销不同类型的
+ * @author 冯杨
+ * @date 2018年1月24日18:45
+ * @explain 此接口是用于对财务表选择报销不同类型的
+ */
+public interface ReimnumtabService {
+	List<Finance> FindByApp_abb(String app_abb);
+	List<ReimTypeTab> FindAll();
+	List<MainVo> FindByLine(String emp_name);
+}

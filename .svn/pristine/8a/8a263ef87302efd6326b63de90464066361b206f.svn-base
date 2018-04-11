@@ -1,0 +1,78 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.FinanceDao;
+import com.zlt.system.entity.Finance;
+
+/**
+ * 此类是对FinanceDao接口的方法的实现
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月22日20:20
+ * @explain 此类是对FinanceDao接口的方法的实现
+ * 
+ */
+public class FinanceDaoImpl extends CurrencyDaoImpl<Finance> implements FinanceDao {
+
+	/**
+	 * 实现FincanceDao接口的FindAll方法
+	 * @return 返回的是查询到的财务表的所有信息集合
+	 * @explain 此方法实现FincanceDao接口的FindAll方法
+	 */
+	@Override
+	public List<Finance> FinanceFindAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 实现FincanceDao接口的FindById方法
+	 * @return 返回的是根据id查询到的财务表的所有信息集合
+	 * @explain 此方法实现FincanceDao接口的FindById方法
+	 */
+	@Override
+	public List<Finance> FinanceFindById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * 实现根据id删除财务表中的信息
+	 * @param 传入Finance财务表的id，删除财务信息
+	 * @return 返回整型
+	 * @explain 此方法实现根据id删除财务表中的信息
+	 */
+	@Override
+	public int FinanceDelete(int id) {
+		return id;
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * 实现对财务表信息的修改
+	 * @param 传入对象，更新财务表信息
+	 * @return 返回整型
+	 * @explain 此方法实现对财务表信息的修改
+	 */
+	@Override
+	public int FinanceUpdate(Finance finance) {
+		return 0;
+		// TODO Auto-generated method stub
+
+	}
+
+	/**
+	 * 实现增加财务表信息
+	 * @param 传入对象，增加财务表内容
+	 * @return 返回整型
+	 * @explain 此方法用于实现增加财务表信息
+	 */
+	@Override
+	public int FinanceInsert(Finance finance) {
+		return 0;
+		// TODO Auto-generated method stub
+
+	}
+
+}

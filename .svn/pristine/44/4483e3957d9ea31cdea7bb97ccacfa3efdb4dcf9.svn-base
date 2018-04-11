@@ -1,0 +1,37 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
+import com.zlt.system.dao.FinanceVoDao;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.FinanceVo;
+
+public class FinanceVoDaoImpl implements FinanceVoDao{
+
+	@Override
+	public List<FinanceVo> FinanceFindByApp_abb(String app_abb) {
+		// TODO Auto-generated method stub
+		List<FinanceVo> list=null;
+		String sql="SELECT bbb.`finance_id`,aaa.app_abb,aaa.emp_name,aaa.money,bbb.`finance_status`,bbb.`finance_payment` FROM finance bbb, (SELECT status1,status2,a.reim_id,a.emp_name,a.department_name,a.app_abb,a.money"
+				+" FROM STATUS,"
+				+"(SELECT reim_id,emp_name,department_name,app_abb,hotel_quarterage AS money FROM hotel"
+				+" UNION	"
+				+" SELECT reim_id,emp_name,department_name,app_abb,other_money AS money FROM other "
+				+" UNION"
+				+" SELECT reim_id,emp_name,department_name,app_abb,traffic_money AS money FROM traffic"
+				+" UNION"
+				+" SELECT reim_id,emp_name,department_name,app_abb,travel_money AS money FROM travel) a "
+				+" WHERE  status.`app_abb` IN (a.app_abb) AND status_result='通过' )aaa GROUP BY aaa.app_abb";
+		try {
+			list=DBUtil.getQueryRunner().query(sql, new BeanListHandler<FinanceVo>(FinanceVo.class));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+}

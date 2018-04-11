@@ -1,0 +1,46 @@
+package com.zlt.system.service;
+/**申请审批报销接口
+ * @author 刘俊泽
+ * 
+ */
+import java.util.List;
+
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.vo.ApplyreimVo;
+
+public interface ApplyreimService {
+	/**.
+	 * 根据报销编号查询
+	 */
+	public List<ApplyreimVo> FindById(String app_abb);
+	/**
+	 * 报销信息全部显示
+	 * @param <T>
+	 * 
+	 */
+	public List<ApplyreimVo> Reimbursement();
+	/**
+	 * 查看报销的详细信息
+	 * @return详情
+	 */
+
+	
+	/**
+	 * 审批通过后更新状态
+	 * @param status状态
+	 */
+	public void UpdateState(Status status);
+	/**
+	 * 提交驳回原因改变状态
+	 * @param status原因
+	 */
+	public void InsertReson(Status status);
+	/**
+	 * @author 刘俊泽
+	 * 查询报销人
+	 * @param emp_name
+	 * @return
+	 */
+	public List<ApplyreimVo> FindByName(String emp_name);
+}

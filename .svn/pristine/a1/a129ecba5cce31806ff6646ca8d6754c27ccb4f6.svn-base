@@ -1,0 +1,45 @@
+package com.zlt.system.dao;
+
+import java.util.ArrayList;
+
+import com.zlt.system.entity.Status;
+import com.zlt.system.entity.Traffic;
+
+/**
+*审批状态Dao类
+*包含insert、selectAll、update四个方法接口
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public interface StatusDao  extends CurrencyDao<Status>{
+
+	/**
+	 * 查询申请状态方法接口
+	 * @return 返回所有申请结果集
+	 */
+	public ArrayList<Status> selectAll();
+	
+	/**
+	 * 模糊查询方法接口
+	 * @param 模糊查询字符串
+	 * @return 模糊查询结果集
+	 */
+	public ArrayList<Status> selectLike(String likeString);
+	
+	/**
+	 * 查询详情方法接口
+	 * @param 申请状态记录ID
+	 * @return 申请状态对象
+	 */
+	public Status selectDetails(int ApproId);
+
+
+	/**
+	 * 意见的修改
+	 * @param status
+	 */
+	public void UpdateOpinion(Status status);
+
+}

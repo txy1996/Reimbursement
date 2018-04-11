@@ -1,0 +1,19 @@
+package com.zlt.system.vo;
+/*刘俊泽 知了堂 java三组
+ * 2018年1月22日 19：54
+ * 用于操报销申请审批多表查询
+ * 
+ */
+public class ApplyreimVo {
+	/*Emp_name查询员工表	
+	 * number_id查询报销单号
+	 * Reimbursementtype查询报销类型
+	 * department_name查询所属部门
+	 * Finance_money查询报销总金额
+	 */
+	 private String Emp_name;	
+	 private int number_id;
+	 private String Reimbursementtype;
+	 private String department_name;
+	 private int Finance_money 	;
+}

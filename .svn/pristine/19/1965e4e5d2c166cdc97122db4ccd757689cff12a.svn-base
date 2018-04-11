@@ -1,0 +1,32 @@
+package com.zlt.system.dao;
+/**
+ * 会计审计
+ * @author ryp
+ *
+ */
+public interface Accounting {
+	/**
+	 * 根据报销单号查询
+	 */
+	public void FindById();
+	/**
+	 * 报销信息查询
+	 */
+	public void Reimbursement();
+	/**
+	 * 详细报销信息查询
+	 */
+	public void ReimbursementInfo();
+	/**
+	 * 审批状态查询
+	 */
+	public void State();
+	/**
+	 * 通过之后更新状态
+	 */
+	public void UpdateState();
+	/**
+	 * 驳回之后的原因
+	 */
+	public void InsertReson();
+}

@@ -1,0 +1,52 @@
+package com.zlt.system;
+
+import java.util.List;
+
+import com.zlt.system.dao.BillsDao;
+import com.zlt.system.dao.CurrencyDao;
+import com.zlt.system.dao.TrafficDao;
+import com.zlt.system.dao.impl.BillsDaoImpl;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.dao.impl.TrafficDaoImpl;
+import com.zlt.system.entity.Bills;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Hire;
+import com.zlt.system.service.HireService;
+import com.zlt.system.service.LoginService;
+import com.zlt.system.service.impl.ApprovalStatusServiceImpl;
+import com.zlt.system.service.impl.LoginServiceImpl;
+
+
+/**
+ * 
+ * @author 米邓勇
+ * @date2018/1/22
+ * @explain 测试类
+ */
+public class Test  {
+	TrafficDao ti = new TrafficDaoImpl();
+	TrafficDaoImpl l = new TrafficDaoImpl();
+	HireService ss = new HireService();
+	BillsDao b = new BillsDaoImpl();
+	public static  void main(String[] args) {
+		ApprovalStatusServiceImpl approvalStatusServiceImpl = new ApprovalStatusServiceImpl();
+		System.out.println(approvalStatusServiceImpl.selectAll());
+	}
+	/**
+	 * @explain 获取数据库数据并打印出来
+	 */
+	public void findAll(){
+		Hire h = new Hire();
+		//CurrencyDao cd =new TrafficDaoImpl();
+		try {
+			//ti.
+			//ti.test();
+			List<Employee> list = ss.findall();
+			for(Employee hi:list){
+				System.out.println(hi);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+	}
+}

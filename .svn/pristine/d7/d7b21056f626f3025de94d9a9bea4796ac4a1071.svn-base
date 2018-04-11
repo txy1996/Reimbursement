@@ -1,0 +1,89 @@
+package com.zlt.system.service.impl;
+/**
+ * @author 刘俊泽 报销申请实现类
+ */
+import java.util.List;
+
+import com.zlt.system.dao.EmployeeDao;
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.impl.EmployeeDaoImpl;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApplyreimService;
+import com.zlt.system.vo.ApplyreimVo;
+
+public class ApplyreimServiceImpl implements ApplyreimService{
+	StatusDao statudao = new StatusDaoImpl();
+	
+	
+
+	@Override
+	public List<ApplyreimVo> Reimbursement() {
+		// TODO Auto-generated method stub
+		return statudao.FindByAll();///查询全部
+	}
+
+
+
+/**
+ * @author 刘俊泽
+ * 审批状态
+ */
+	@Override
+	public void UpdateState(Status status) {
+		// TODO Auto-generated method stub
+		statudao.UpdateStatus(status);
+	}
+
+
+/**
+ * @author 刘俊泽
+ *提交驳回改变状态
+ */
+	@Override
+	public void InsertReson(Status status) {
+		// TODO Auto-generated method stub
+		statudao.UpdateStatus(status);
+	}
+
+
+
+
+
+
+/**
+ * @author 刘俊泽
+ * 查询ID
+ */
+@Override
+public List<ApplyreimVo> FindById(String app_abb,String emp_name,String reim_type) {
+	// TODO Auto-generated method stub
+	EmployeeDaoImpl a = new EmployeeDaoImpl();
+   List<ApplyreimVo>c =	a.AppByid(app_abb, reim_type, reim_type);
+return c;
+}
+
+
+
+
+
+
+/**
+ * 查询报销人
+ */
+@Override
+public List<ApplyreimVo> FindByName(String emp_name) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+	
+
+
+
+	
+
+	
+
+}

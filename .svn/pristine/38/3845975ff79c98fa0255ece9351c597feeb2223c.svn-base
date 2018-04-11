@@ -1,0 +1,112 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.zlt.system.dao.Accounting;
+import com.zlt.system.util.DBUtil;
+/**
+ * 会计审计
+ * @author ryp
+ *
+ */
+public class AccountingImpl implements Accounting{
+/**
+ * 根据报销单号查询
+ */
+	@Override
+	public void FindById() {
+		// TODO Auto-generated method stub
+		try {
+			Connection conn=DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 报销信息查询
+ */
+	@Override
+	public void Reimbursement() {
+		// TODO Auto-generated method stub
+		Connection conn;
+		try {
+			conn = DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+/**
+ * 详细报销信息查询
+ */
+	@Override
+	public void ReimbursementInfo() {
+		// TODO Auto-generated method stub
+		Connection conn;
+		try {
+			conn = DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 审批状态查询
+ */
+	@Override
+	public void State() {
+		// TODO Auto-generated method stub
+		Connection conn;
+		try {
+			conn = DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 通过之后更新状态
+ */
+	@Override
+	public void UpdateState() {
+		// TODO Auto-generated method stub
+		Connection conn;
+		try {
+			conn = DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+/**
+ * 驳回之后的原因
+ */
+	@Override
+	public void InsertReson() {
+		// TODO Auto-generated method stub
+		Connection conn;
+		try {
+			conn = DBUtil.getConnection();
+			String sql="";
+			PreparedStatement pre=conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

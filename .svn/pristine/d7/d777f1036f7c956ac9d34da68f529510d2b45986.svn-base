@@ -1,0 +1,47 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.impl.ReimTypeTabDaoImpl;
+import com.zlt.system.dao.impl.ReimnumtabDaoImpl;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.service.ReimnumtabService;
+
+/**
+ * 实现对财务表选择报销不同类型的查询
+ * @author 冯杨
+ * @date 2018年1月24日18:45
+ * @explain 此方法实现ReimnumtabService接口，实现对财务表选择报销不同类型的查询
+ */
+public class ReimnumrabServiceImpl implements ReimnumtabService{
+	private ReimTypeTabDaoImpl reimtypetabDao=new ReimTypeTabDaoImpl();
+	@Override
+	
+	/**
+	 * @param 传入报销编号
+	 * @return 返回查询到的对象集合
+	 */
+	public List<Finance> FindByApp_abb(String app_abb) {
+		// TODO Auto-generated method stub
+		List<Finance> a=reimtypetabDao.FindByApp_abb(app_abb);
+		return a;
+			
+	}
+//	public static void main(String[] args) {
+//		ReimnumrabServiceImpl aaa=new ReimnumrabServiceImpl();
+//		List<Finance> a=aaa.FindByApp_abb("CL");
+//		if(a!=null){
+//			System.out.println(a.toString());
+//		}else{
+//			System.out.println("asaas");
+//		}
+//	}
+	@Override
+	public List<ReimTypeTab> FindAll() {
+		// TODO Auto-generated method stub
+		List<ReimTypeTab> a=reimtypetabDao.FindByAll();
+		return a;
+	}
+
+}

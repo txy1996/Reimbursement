@@ -1,0 +1,19 @@
+package com.zlt.system.service;
+
+import org.apache.catalina.User;
+
+/**
+ * 登陆业务层类
+ * @author xinzou
+ *
+ */
+public interface LoginService {
+	
+	/**
+	 * service层login方法
+	 * @param user
+	 * @return
+	 */
+	public boolean login(User user);
+	
+}

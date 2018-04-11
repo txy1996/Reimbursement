@@ -1,0 +1,47 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.ApprovalStatusService;
+import com.zlt.system.vo.StatusDetailVO;
+import com.zlt.system.vo.StatusVO;
+
+/**
+*申请状态查询实现类
+*@author xinzou
+*@date 2018/1/22
+*/
+
+public class ApprovalStatusServiceImpl implements ApprovalStatusService {
+	StatusDaoImpl statusDaoImpl = new StatusDaoImpl();
+
+	/**
+	 * 申请状态全部查询
+	 * @return 返回查询结果集
+	 */
+	public List<StatusVO> selectAll() {
+		return statusDaoImpl.selectAll();
+	}
+
+	
+	/**
+	 * 申请状态模糊查询
+	 * @return 返回查询结果集
+	 */
+	@Override
+	public List<StatusVO> selectLike(String likeString) {
+		return statusDaoImpl.selectLike(likeString);
+	}
+
+	/**
+	 * 查看详情方法实现
+	 * @param 申请记录ID
+	 * @return 申请记录状态对象
+	 */
+	@Override
+	public StatusDetailVO selectDetails(String app_abb) {
+		return statusDaoImpl.selectDetails(app_abb);
+	}
+
+}

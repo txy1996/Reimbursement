@@ -1,0 +1,11 @@
+package com.zlt.system.service.impl;
+/**
+ * 
+ * @author 晓煜
+ * @date2018年1月24日上午10:09:05
+ * @version 
+ * @explain
+ */
+public class EmployeeServiceImpl {
+	
+}

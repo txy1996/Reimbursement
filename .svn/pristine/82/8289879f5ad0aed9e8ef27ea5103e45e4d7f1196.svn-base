@@ -1,0 +1,63 @@
+package com.zlt.system.service;
+/**申请审批报销接口
+ * @author 刘俊泽
+ * 
+ */
+import java.util.List;
+
+import com.zlt.system.entity.Status;
+
+public interface ApplyreimService {
+	public void FindById(String num);
+	/**
+	 * 报销信息全部显示
+	 * @param <T>
+	 * 
+	 */
+	public List<?> Reimbursement();
+	/**
+	 * 查看报销的详细信息
+	 * @return详情
+	 */
+	public List<?> ReimbursementInfo(int id,String type);
+//	/**
+//	 * @author 刘俊泽
+//	 * @param emp_name查询报销人名字
+//	 * @return
+//	 */
+//	public List<?> Employee (String emp_name);
+//	/**
+//	 * @author 刘俊泽
+//	 * @param abb 查询报销单号
+//	 * @return
+//	 */
+//	public List<?>Reimnumtab(String abb);
+//	/**
+//	 * @author 刘俊泽
+//	 * @param reim_abb查询报销类型
+//	 * @return
+//	 */
+//	public List<?>ReimTypeTab(String reim_abb);
+//	/**
+//	 * @author 刘俊泽
+//	 * @param department_name查询部门
+//	 * @return
+//	 */
+//	public List<?>Department(String department_name );
+//	/**
+//	 * @author 刘俊泽
+//	 * @param finance_money查询报销总金额
+//	 * @return
+//	 */
+	public List<?>Finance(int finance_money );
+	/**
+	 * 审批通过后更新状态
+	 * @param status状态
+	 */
+	public void UpdateState(int id,Status status,String type);
+	/**
+	 * 提交驳回原因改变状态
+	 * @param status原因
+	 */
+	public void InsertReson(int id,Status status,String type);
+}

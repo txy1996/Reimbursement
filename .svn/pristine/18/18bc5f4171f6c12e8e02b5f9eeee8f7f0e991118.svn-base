@@ -1,0 +1,38 @@
+package com.zlt.system.vo;
+/**
+ * 用于个人报表的年报数据传输，
+ * @author 晓煜
+ * @date2018年1月24日下午8:35:43
+ * @version
+ * @explain
+ */
+public class Swarthy {
+	private int month;
+	private int number;
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		this.month = month;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public Swarthy(int month, int number) {
+		super();
+		this.month = month;
+		this.number = number;
+	}
+	public Swarthy() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Swarthy [month=" + month + ", number=" + number + "]";
+	}
+	
+}

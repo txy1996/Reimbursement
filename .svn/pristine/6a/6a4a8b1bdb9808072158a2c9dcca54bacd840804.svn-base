@@ -1,0 +1,87 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.entity.Other;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.History;
+
+/**
+ * 其他类型报销信息的实现类
+ * 
+ * @author 米邓勇
+ *
+ */
+public class OtherDaoImpl extends CurrencyDaoImpl<Other> implements OtherDao {
+	private Connection conn;
+	private PreparedStatement psat;
+	private ResultSet rst;
+
+	public static void main(String[] args) throws Exception {
+		OtherDaoImpl other = new OtherDaoImpl();
+		List<History> list = other.findAllHistory(true);
+		System.out.println(list);
+	}
+
+	@Override
+	public List<History> findAllHistory(boolean flag) throws SQLException {
+		// 正序
+		String sql = "SELECT emp.emp_name,other_time,other_project,other_money,other_reason,other_remarks,department.department_name,other.app_abb FROM emp,other,department   WHERE emp.emp_name=other.emp_name AND emp.emp_name=department.department_name ORDER BY other_time";
+		if (flag = false) {
+			// 倒序
+			String sqlDesc = sql + "DESC";
+		}
+		return findBySql(sql);
+	}
+
+	@Override
+	public List<History> findLike(String string) throws SQLException {
+		// 查询语句
+		String sql = "";
+		return findBySql(sql);
+	}
+
+	@Override
+	public List<History> findByDate(String string) throws SQLException {
+		// 查询语句
+		String sql = "";
+		return findBySql(sql);
+	}
+
+	/**
+	 * 封装用于历史记录查询方法
+	 * 
+	 * @param 对应条件的查询语句sql
+	 * @return 符合查询条件的历史记录集合
+	 * @throws SQLException
+	 */
+	private List<History> findBySql(String sql) throws SQLException {
+		conn = DBUtil.getConnection();
+		psat = conn.prepareStatement(sql);
+		rst = psat.executeQuery();
+		List<History> list = new ArrayList<History>();
+		// 处理结果集
+		while (rst.next()) {
+			History history = new History();
+			history.setApp_abb(rst.getString("app_abb"));
+			history.setDepartment_name(rst.getString("department_name"));
+			history.setEmp_name(rst.getString("emp_name"));
+			history.setOther_money(rst.getInt("other_money"));
+			history.setOther_project(rst.getString("other_project"));
+			history.setOther_reason(rst.getString("other_reason"));
+			history.setOther_time(rst.getString("other_time"));
+			history.setReimbursementtype_type(rst.getString("reimbursementtype_type"));
+			history.setRemarks(rst.getString("remarks"));
+			list.add(history);
+		}
+		// 关闭连接资源
+		DBUtil.close(conn, psat, rst);
+		return list;
+	}
+}

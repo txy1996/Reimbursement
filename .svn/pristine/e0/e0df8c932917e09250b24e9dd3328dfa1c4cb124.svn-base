@@ -1,0 +1,37 @@
+package com.zlt.system.service;
+
+import com.zlt.system.entity.Bills;
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.entity.Other;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.vo.GetMaxMoneyVo;
+
+/**
+ * 新增申请的业务层
+ * @author 米邓勇
+ *
+ */
+public interface NewAppcationService {
+	public boolean add(Travel travel);
+	public boolean add(Traffic traffic);
+	public boolean add(Other other);
+	public boolean add(Hotel hotel);
+	public boolean update(Travel travel);
+	public boolean update(Traffic traffic);
+	public boolean update(Other other);
+	public boolean update(Hotel hotel);
+	public boolean add(Reimnumtab rm);
+	public ReimTypeTab findrei(ReimTypeTab rt);
+	public Travel findMaxtravel();
+	public Traffic findMaxtraffic();
+	public Other findMaxother();
+	public Hotel findMaxhotel();
+	public boolean addImg(Bills bills);
+	public boolean addStatus(Status status);
+	public GetMaxMoneyVo findMaxMoney(String name);
+}

@@ -1,0 +1,64 @@
+package com.zlt.system.entity;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+/**
+ * 报销级别表的实体类
+ * @author 米邓勇
+ *
+ */
+@Bean("level")
+public class Level {
+	@Id("level_id")
+	private int id;
+	
+	@Column("position_level")
+	private int level;
+	
+	@Column("level_money")
+	private String money;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public String getMoney() {
+		return money;
+	}
+
+	public void setMoney(String money) {
+		this.money = money;
+	}
+
+	@Override
+	public String toString() {
+		return "Level [id=" + id + ", level=" + level + ", money=" + money + "]";
+	}
+
+	public Level(int id, int level, String money) {
+		super();
+		this.id = id;
+		this.level = level;
+		this.money = money;
+	}
+
+	public Level() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

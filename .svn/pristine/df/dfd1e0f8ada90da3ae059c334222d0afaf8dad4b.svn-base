@@ -1,0 +1,59 @@
+package com.zlt.system.service.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.dao.impl.StatusDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.entity.Status;
+import com.zlt.system.service.AccountingService;
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public class AccountingServiceImpl implements AccountingService{
+	StatusDao statusdao=new StatusDaoImpl();
+	/**
+	 * 报销信息
+	 */
+	@Override
+	public List<?> Reimbursement() {
+		// TODO Auto-generated method stub
+		
+		return null;
+	}
+	/**
+	 * 报销的详细信息
+	 */
+	@Override
+	public List<?> ReimbursementInfo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/**
+	 * 审批通过后更新状态
+	 */
+	@Override
+	public void UpdateState(Status status) {
+		// TODO Auto-generated method stub
+		statusdao.UpdateStatus(status);
+	}
+	/**
+	 * 提交驳回原因
+	 */
+	@Override
+	public void InsertReson(Status status) {
+		// TODO Auto-generated method stub
+		statusdao.UpdateOpinion(status);
+	}
+	/**
+	 * 根据报销单号查询
+	 */
+	@Override
+	public void FindById(Reimnumtab reimnumtab) {
+		// TODO Auto-generated method stub
+	
+	}
+
+}

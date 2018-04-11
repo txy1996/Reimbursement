@@ -1,0 +1,34 @@
+package com.zlt.system.dao;
+
+
+import com.zlt.system.entity.Other;
+import java.util.List;
+
+/**
+ * 调用其他报销类型表信息的接口
+ * @author 米邓勇
+ *
+ */
+public interface OtherDao  extends CurrencyDao<Other>{
+	/**
+	 * 其他类型报销信息填写
+	 * @param other
+	 */
+	public void Insert(Other other);
+	/**
+	 * 其他类型报销信息删除
+	 * @param other
+	 */
+	public void Delete(Other other);
+	/**
+	 * 其他类型报销信息修改
+	 * @param other
+	 */
+	public void Update(Other other);
+	/**
+	 * 其他类型报销信息查询
+	 * @param other
+	 * @return
+	 */
+	public List<Other> Select(Other other);
+}

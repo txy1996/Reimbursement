@@ -1,0 +1,45 @@
+package com.zlt.system.vo;
+
+import java.util.List;
+
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Finance;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.entity.Reimnumtab;
+
+/**刘俊泽 知了堂 java三组
+ * 2018年1月22日 19：54
+ * 用于操报销申请审批多表查询
+ * 
+ */
+public class ApplyreimVo  {
+	/**number_id单号 
+	 * emp_name查询报销人
+	 * department_name查询部门 
+	 * reim_type查询报销类型
+	 * Finance_money查询报销总金额
+	 */
+	 
+	 private int app_add;	
+	 
+	 private String emp_name;
+	 
+	 private String department_name;
+	 
+	 private String reim_type;
+	 
+	 private int Finance_money 	;
+
+	public ApplyreimVo(int number_id, String emp_name, String department_name, String reim_type, int finance_money) {
+		super();
+		this.app_add = number_id;
+		this.emp_name = emp_name;
+		this.department_name = department_name;
+		this.reim_type = reim_type;
+		Finance_money = finance_money;
+	}
+	 
+	 
+	
+}

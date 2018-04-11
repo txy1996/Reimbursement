@@ -1,0 +1,30 @@
+package com.zlt.system.service;
+
+import java.util.ArrayList;
+
+import com.zlt.system.entity.ApprovalStatus;
+
+/**
+*审批状态业务类
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public interface ApprovalStatusService {
+
+	/**
+	 * 增加申请方法接口
+	 */
+	public int insert(ApprovalStatus approvalStatus);
+	
+	/**
+	 * 查询申请方法接口
+	 */
+	public ArrayList<ApprovalStatus> selectAll();
+	
+	/**
+	 * 修改申请状态方法接口
+	 */
+	public int update(ApprovalStatus approvalStatus);
+}

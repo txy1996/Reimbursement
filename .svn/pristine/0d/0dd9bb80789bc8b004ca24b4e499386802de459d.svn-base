@@ -1,0 +1,11 @@
+package com.zlt.system.dao;
+import com.zlt.system.entity.Travel;
+/**
+ * 调用差旅表数据的接口
+ * @author 米邓勇
+ *
+ */
+
+public interface TravelDao extends CurrencyDao<Travel>{
+	
+}

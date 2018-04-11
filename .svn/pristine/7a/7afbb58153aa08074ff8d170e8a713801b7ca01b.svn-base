@@ -1,0 +1,94 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+
+import com.zlt.system.dao.StatusDao;
+import com.zlt.system.entity.Status;
+import com.zlt.system.util.DBUtil;
+
+
+/**
+*ApprovalStatusDao实现类
+*包含增、改、查方法
+*@author xinzou
+*@date 2018/1/22
+*@version 1.0
+*/
+
+public class StatusDaoImpl extends CurrencyDaoImpl<Status> implements StatusDao {
+
+
+	/**
+	 * 查询申请状态方法实现
+	 * return:返回结果集
+	 */
+	public ArrayList<Status> selectAll() {
+		String sql="select * from status";
+		ArrayList<Status> statuss=new ArrayList<Status>();
+		try {
+			statuss=(ArrayList<Status>) DBUtil.getQueryRunner().query(sql,  new BeanListHandler<Status>(Status.class));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return statuss;
+	}
+	
+	/**
+	 * 模糊查询方法实现
+	 * @return 模糊查询结果集
+	 */
+	public ArrayList<Status> selectLike(String likeString) {
+		
+		return null;
+	}
+	
+	/**
+	 * 查看详情方法
+	 * return:返回申请状态对象
+	 */
+	@Override
+	public Status selectDetails(int ApproId) {
+		
+		return null;
+	}
+	/**
+	 * 报销审批驳回之后的意见修改
+	 */
+	@Override
+    public void UpdateOpinion(Status status) {
+		String sql="UPDATE STATUS SET status2_opinion=?,status_result='未通过' WHERE app_abb=?";
+		QueryRunner runner=new QueryRunner();
+		try {
+			runner.update(DBUtil.getConnection(), sql, status.getStatus2_opinion(),status.getApp_abb());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 审批通过后状态的改变
+	 */
+	@Override
+	public void UpdateStatus(Status status) {
+
+		String sql="UPDATE STATUS SET status_result='通过' WHERE app_abb=?";
+		QueryRunner runner=new QueryRunner();
+		try {
+			runner.update(DBUtil.getConnection(), sql, status.getApp_abb());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 第一次审批通过，第二次没有审批的
+	 */
+	@Override
+	public List<?> FindByStatus(Status status) {
+		return null;
+	}
+	
+}

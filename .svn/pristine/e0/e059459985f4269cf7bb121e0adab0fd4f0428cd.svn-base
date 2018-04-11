@@ -1,0 +1,37 @@
+package com.zlt.system.vo;
+/**
+ * 用于接收个人报表的数据，关于类型的饼状图
+ * @author 晓煜
+ * @date2018年1月24日下午7:07:53
+ * @version
+ * @explain
+ */
+public class Report {
+	private int type;
+	private int number;
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	public Report() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public Report(int type, int number) {
+		super();
+		this.type = type;
+		this.number = number;
+	}
+	@Override
+	public String toString() {
+		return "Report [type=" + type + ", number=" + number + "]";
+	}
+}

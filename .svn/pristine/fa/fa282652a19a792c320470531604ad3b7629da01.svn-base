@@ -1,0 +1,38 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.entity.Other;
+/**
+ * 其他类型报销信息的实现类
+ * @author 米邓勇
+ *
+ */
+public class OtherDaoImpl extends CurrencyDaoImpl<Other>  implements OtherDao{
+
+	@Override
+	public void Insert(Other other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Delete(Other other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Update(Other other) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Other> Select(Other other) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

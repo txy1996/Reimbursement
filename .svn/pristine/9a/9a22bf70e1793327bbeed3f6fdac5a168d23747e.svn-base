@@ -1,0 +1,38 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.entity.Travel;
+/**
+ * 差旅表数据的接口
+ * @author 米邓勇
+ *
+ */
+public class TravelDaoImpl extends CurrencyDaoImpl<Travel> implements TravelDao {
+
+	@Override
+	public void Insert(Travel travel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Delete(Travel travel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void Update(Travel travel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Travel> Select(Travel travel) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

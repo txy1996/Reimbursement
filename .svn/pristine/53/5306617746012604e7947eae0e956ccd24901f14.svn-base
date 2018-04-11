@@ -1,0 +1,109 @@
+package com.zlt.system.entity;
+
+
+/**
+ * 财务表的实体类
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月22日20:20
+ * @explain 财务表的实体类
+ */
+public class Finance {
+	private int finance_id;
+	private String claimform_id;
+	private String claimform_status;
+	private String finance_payment;
+	private String finance_money;
+	private String finance_date;
+	private String finance_attn;
+	public int getFinance_id() {
+		return finance_id;
+	}
+	public void setFinance_id(int finance_id) {
+		this.finance_id = finance_id;
+	}
+	public String getClaimform_id() {
+		return claimform_id;
+	}
+	public void setClaimform_id(String claimform_id) {
+		this.claimform_id = claimform_id;
+	}
+	public String getClaimform_status() {
+		return claimform_status;
+	}
+	public void setClaimform_status(String claimform_status) {
+		this.claimform_status = claimform_status;
+	}
+	public String getFinance_payment() {
+		return finance_payment;
+	}
+	public void setFinance_payment(String finance_payment) {
+		this.finance_payment = finance_payment;
+	}
+	public String getFinance_money() {
+		return finance_money;
+	}
+	public void setFinance_money(String finance_money) {
+		this.finance_money = finance_money;
+	}
+	public String getFinance_date() {
+		return finance_date;
+	}
+	public void setFinance_date(String finance_date) {
+		this.finance_date = finance_date;
+	}
+	public String getFinance_attn() {
+		return finance_attn;
+	}
+	public void setFinance_attn(String finance_attn) {
+		this.finance_attn = finance_attn;
+	}
+	
+/**
+ * 
+ * @param finance_id 财务报销编号
+ * @param claimform_id 报销申请编号
+ * @param claimform_status 支付状态
+ * @param finance_payment 报销支付方式
+ * @param finance_money 报销支付金额
+ * @param finance_date 创建日期
+ * @param finance_attn 经办人
+ * @explain 此构造方法是带所有参数的
+ */
+	public Finance(int finance_id, String claimform_id, String claimform_status, String finance_payment,
+			String finance_money, String finance_date, String finance_attn) {
+		super();
+		this.finance_id = finance_id;
+		this.claimform_id = claimform_id;
+		this.claimform_status = claimform_status;
+		this.finance_payment = finance_payment;
+		this.finance_money = finance_money;
+		this.finance_date = finance_date;
+		this.finance_attn = finance_attn;
+	}
+	
+/**
+ * 
+ * @param finance_id 财务报销编号
+ * @explain 此构造方法是用于根据id操作数据
+ */
+	public Finance(int finance_id) {
+		super();
+		this.finance_id = finance_id;
+	}
+	
+/**
+ * @param 无参构造
+ * @explain 无参构造函数
+ */
+	public Finance() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Finance [finance_id=" + finance_id + ", claimform_id=" + claimform_id + ", claimform_status="
+				+ claimform_status + ", finance_payment=" + finance_payment + ", finance_money=" + finance_money
+				+ ", finance_date=" + finance_date + ", finance_attn=" + finance_attn + "]";
+	}
+	
+}

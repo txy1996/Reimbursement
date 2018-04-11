@@ -1,0 +1,178 @@
+package com.zlt.system.entity;
+
+import java.util.Date;
+
+import com.zlt.system.annotation.Bean;
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+
+	/**
+	 * 财务表的实体类
+	 * 
+	 * @author 冯杨 知了堂项目java三组
+	 * @date 2018年1月22日20:20
+	 * @explain 财务表的实体类
+	 */
+@Bean("finance")
+public class Finance {
+	@Id("finance_id")
+	private int finance_id;
+	@Column("app_abb")
+	private String app_abb;
+	@Column("finance_status")
+	private String finance_status;
+	@Column("finance_payment")
+	private String finance_payment;
+	@Column("finance_money")
+	private float finance_money;
+	@Column("finance_date")
+	private Date finance_date;
+	@Column("finance_attn")
+	private String finance_attn;
+
+	public int getFinance_id() {
+		return finance_id;
+	}
+
+	public void setFinance_id(int finance_id) {
+		this.finance_id = finance_id;
+	}
+
+	public String getApp_abb() {
+		return app_abb;
+	}
+
+	public void setApp_abb(String app_abb) {
+		this.app_abb = app_abb;
+	}
+
+	public String getFinance_status() {
+		return finance_status;
+	}
+
+	public void setFinance_status(String finance_status) {
+		this.finance_status = finance_status;
+	}
+
+	public String getFinance_payment() {
+		return finance_payment;
+	}
+
+	public void setFinance_payment(String finance_payment) {
+		this.finance_payment = finance_payment;
+	}
+
+	public float getFinance_money() {
+		return finance_money;
+	}
+
+	public void setFinance_money(float finance_money) {
+		this.finance_money = finance_money;
+	}
+
+	public Date getFinance_date() {
+
+		return finance_date;
+	}
+
+	public void setFinance_date(Date finance_date) {
+		this.finance_date = finance_date;
+	}
+
+	public String getFinance_attn() {
+		return finance_attn;
+	}
+
+	public void setFinance_attn(String finance_attn) {
+		this.finance_attn = finance_attn;
+	}
+
+	/**
+	 * 此构造方法是带所有参数的
+	 * 
+	 * @param finance_id
+	 *            财务报销编号
+	 * @param app_abb
+	 *            报销申请编号
+	 * @param finance_status
+	 *            支付状态
+	 * @param finance_payment
+	 *            报销支付方式
+	 * @param finance_money
+	 *            报销支付金额
+	 * @param finance_date
+	 *            创建日期
+	 * @param finance_attn
+	 *            经办人
+	 * @explain 此构造方法是带所有参数的
+	 */
+	public Finance(int finance_id, String app_abb, String finance_status, String finance_payment, float finance_money,
+			Date finance_date, String finance_attn) {
+		super();
+		this.finance_id = finance_id;
+		this.app_abb = app_abb;
+		this.finance_status = finance_status;
+		this.finance_payment = finance_payment;
+		this.finance_money = finance_money;
+		this.finance_date = finance_date;
+		this.finance_attn = finance_attn;
+	}
+
+	/**
+	 * 
+	 * @param app_abb
+	 *            报销申请编号
+	 * @param finance_status
+	 *            支付状态
+	 * @param finance_payment
+	 *            报销支付方式
+	 * @param finance_money
+	 *            报销支付金额
+	 * @param finance_date
+	 *            创建日期
+	 * @param finance_attn
+	 *            经办人
+	 * @explain 此构造方法是带除了id的参数的
+	 */
+	public Finance(String app_abb, String finance_status, String finance_payment, float finance_money,
+			Date finance_date, String finance_attn) {
+		super();
+		this.app_abb = app_abb;
+		this.finance_status = finance_status;
+		this.finance_payment = finance_payment;
+		this.finance_money = finance_money;
+		this.finance_date = finance_date;
+		this.finance_attn = finance_attn;
+	}
+
+	/**
+	 * 用于根据id操作数据
+	 * 
+	 * @param finance_id
+	 *            财务报销编号
+	 * @explain 此构造方法是用于根据id操作数据
+	 */
+	public Finance(int finance_id) {
+		super();
+		this.finance_id = finance_id;
+	}
+
+	/**
+	 * 无参构造函数
+	 * 
+	 * @param 无参构造
+	 * @explain 无参构造函数
+	 */
+	public Finance() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Finance [finance_id=" + finance_id + ", app_abb=" + app_abb + ", finance_status=" + finance_status
+				+ ", finance_payment=" + finance_payment + ", finance_money=" + finance_money + ", finance_date="
+				+ finance_date + ", finance_attn=" + finance_attn + "]";
+	}
+
+}

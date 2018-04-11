@@ -1,0 +1,225 @@
+package com.zlt.system.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.zlt.system.entity.Department;
+import com.zlt.system.entity.ReimTypeTab;
+import com.zlt.system.service.ReportFormService;
+import com.zlt.system.service.impl.ReportFormServiceImpl;
+import com.zlt.system.vo.DepartmentInfoVo;
+import com.zlt.system.vo.GetTimeVo;
+
+/**
+ * Servlet implementation class ReportFormServlet
+ */
+@WebServlet("/ReportFormServlet")
+public class ReportFormServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	ReportFormService report = new ReportFormServiceImpl();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ReportFormServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String type = request.getParameter("type");
+		if("findtime".equals(type)){
+			findTime(request, response);
+		}else if("depart_bar".equals(type)){
+			setDepartmentBar(request, response);
+		}else if("depart_line".equals(type)){
+			setDepartmentLine(request, response);
+		}else if("depart_pie".equals(type)){
+			setDepartmentPie(request, response);
+		}else if("company_bar".equals(type)){
+			setCompanyBar(request, response);
+		}else if("company_line".equals(type)){
+			setCompanyLine(request, response);
+		}else if("company_pie".equals(type)){
+			setCompanyPie(request, response);
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	/**
+	 * 添加柱状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setDepartmentBar(HttpServletRequest request, HttpServletResponse response){
+		response.setContentType("text/html;charset=UTF-8");
+		ReportFormService rs = new ReportFormServiceImpl();
+		List<ReimTypeTab> list = rs.findReimTypeTabAll();
+		String[] str = new String[list.size()];
+		int s=0;
+		for(ReimTypeTab d:list){
+			str[s] = d.getReim_type();
+			s++;
+		}
+		String year = request.getParameter("year");
+		System.out.println(year+"sss");
+		System.out.println(request.getSession().getAttribute("username"));
+		List<DepartmentInfoVo> list1 = rs.findDepartmentInfo(Integer.parseInt(year),"研发部");
+		int[] inte = new int[list1.size()];
+		int i = 0;
+		for(DepartmentInfoVo d:list1){
+			inte[i] = d.getNum();
+			i++;
+		}
+		JSONObject json = new JSONObject();
+		json.put("names", str);
+		json.put("leg", "销量");
+		json.put("nums", inte);
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(json.toJSONString());
+			System.out.println(json.toJSONString());
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 添加线状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setDepartmentLine(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	/**
+	 * 添加饼状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setDepartmentPie(HttpServletRequest request, HttpServletResponse response){
+		response.setContentType("text/html;charset=UTF-8");
+		ReportFormService rs = new ReportFormServiceImpl();
+		List<ReimTypeTab> list = rs.findReimTypeTabAll();
+		String[] str = new String[list.size()];
+		int s=0;
+		for(ReimTypeTab d:list){
+			str[s] = d.getReim_type();
+			s++;
+		}
+		String year = request.getParameter("year");
+		System.out.println(year+"sss");
+		List<DepartmentInfoVo> list1 = rs.findDepartmentInfo(Integer.parseInt(year),"研发部");
+		int[] inte = new int[list1.size()];
+		int i = 0;
+		for(DepartmentInfoVo d:list1){
+			inte[i] = d.getNum();
+			i++;
+		}
+		
+		JSONArray arr = new JSONArray();
+		for(int m=0;m<i;m++){
+			JSONObject ob = new JSONObject();
+			ob.put("name", str[m]);
+			ob.put("value", inte[m]);
+			arr.add(ob);
+		}
+		JSONObject json = new JSONObject();
+		json.put("data", arr);
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(json.toJSONString());
+			System.out.println(json.toJSONString());
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 添加柱状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setCompanyBar(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	/**
+	 * 添加线状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setCompanyLine(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	/**
+	 * 添加饼状图所需数据
+	 * @2018年1月26日
+	 * @void
+	 * @setDepartmentBar
+	 * @author 米邓勇
+	 */
+	public void setCompanyPie(HttpServletRequest request, HttpServletResponse response){
+		
+	}
+	/**
+	 * 用来获取拥有数据的所有年份
+	 * @2018年1月26日
+	 * @void
+	 * @findTime
+	 * @author 米邓勇
+	 */
+	public void findTime(HttpServletRequest request, HttpServletResponse response){
+		response.setContentType("text/html;charset=UTF-8");
+		List<GetTimeVo> list = report.findTime();
+		JSONArray arr = new JSONArray();
+		for(GetTimeVo time:list){
+//			JSONObject json = new JSONObject();
+//			System.out.println(time.getTime());
+//			json.put("time", time.getTime());
+			arr.add(time);
+		}
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(arr.toJSONString());
+			System.out.println(arr.toJSONString());
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

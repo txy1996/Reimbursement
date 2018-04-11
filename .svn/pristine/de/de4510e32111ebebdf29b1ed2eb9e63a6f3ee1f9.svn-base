@@ -1,0 +1,74 @@
+package com.zlt.system.service.impl;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.dao.impl.TrafficDaoImpl;
+import com.zlt.system.dao.impl.TravelDaoImpl;
+import com.zlt.system.entity.Hotel;
+import com.zlt.system.entity.Other;
+import com.zlt.system.entity.Traffic;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.service.NewAppcationService;
+/**
+ * 报销申请的实现类
+ * @author 米邓勇
+ *
+ */
+public class NewApplicationServiceImpl implements NewAppcationService{
+	public static void main(String[] args) {
+		NewApplicationServiceImpl na = new NewApplicationServiceImpl();
+		Travel t = new Travel();
+		DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null,date1=null;
+		try {
+			date = format1.parse("2017-04-05");
+			date1 = format1.parse("2017-05-05");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		t.setTravel_id(111);
+		t.setReim_id(1);
+		t.setEmp_name("tjy");
+		t.setTravel_address("成都");
+		t.setTravel_start(date);
+		t.setTravel_end(date1);
+		t.setTravel_date(30);
+		t.setTravel_target("完成");
+		t.setTravel_result("完美完成");
+		t.setTravel_money(333);
+		t.setTravel_remark("~~~");
+		boolean flag = na.add(t);
+		System.out.println(flag);
+	}
+	
+	@Override
+	public boolean add(Travel travel) {
+		TravelDao td =new TravelDaoImpl();
+		td.insert_NoID(travel);
+		return false;
+	}
+	
+	@Override
+	public boolean add(Traffic traffic) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean add(Other other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean add(Hotel hotel) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

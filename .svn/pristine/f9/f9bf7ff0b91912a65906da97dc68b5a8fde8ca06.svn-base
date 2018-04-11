@@ -1,0 +1,9 @@
+package com.zlt.system.service;
+
+import java.util.List;
+
+import com.zlt.system.vo.FinanceVo;
+
+public interface FinanceVoService {
+	List<FinanceVo> FinanceFindByApp_abb(String app_abb);
+}

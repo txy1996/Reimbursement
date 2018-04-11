@@ -1,0 +1,111 @@
+package com.zlt.system.servlet;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zlt.system.service.HistoryRecordService;
+import com.zlt.system.service.impl.HistoryRecordServiceImpl;
+
+/**
+ * 历史记录查询
+ * @author `'`灯半盏
+ *
+ */
+@WebServlet("/HistoryRecordServlet")
+public class HistoryRecordServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 封装HistoryRecordServiceImpl对象
+	 */
+	private HistoryRecordService historySer = new HistoryRecordServiceImpl();
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public HistoryRecordServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+			
+	}
+
+	/**
+	 * 点击此界面时,默认使用的方法,正序排序,显示三个月内的历史记录
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws SQLException
+	 * @throws IOException
+	 */
+	protected void defaultShow(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
+		List list = historySer.findAll();
+		request.setAttribute("list", list);
+		response.sendRedirect("");
+	}
+
+	/**
+	 * 根据界面的选择日期和排序方式显示内容
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws SQLException
+	 * @author `'`灯半盏
+	 * @throws IOException
+	 */
+	protected void chooseShow(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, IOException {
+		// 获取下拉框选择的时间 和排序的boolean值
+		String thisTime = request.getParameter("");
+		boolean flag = true;
+		String flagStr = request.getParameter("");// 判断传回的值是否为false
+		if (("false").equals(flagStr)) {
+			flag = false;
+		}
+		List list = historySer.findByDate(thisTime, flag);
+		request.setAttribute("lsit", list);
+		response.sendRedirect("");
+	}
+
+	/**
+	 * 根据搜索框内容模糊查询内容;正序和倒序排序
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws SQLException
+	 * @throws IOException 
+	 */
+	protected void findLikeString(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		String string = request.getParameter("");
+		boolean flag = true;
+		String flagStr = request.getParameter("");// 判断传回的值是否为false
+		if (("false").equals(flagStr)) {
+			flag = false;
+		}
+		List list = historySer.findLike(string,flag);
+		request.setAttribute("lsit", list);
+		response.sendRedirect("");
+	}
+}

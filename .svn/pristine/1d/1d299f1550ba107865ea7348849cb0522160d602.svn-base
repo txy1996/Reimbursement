@@ -1,0 +1,36 @@
+package com.zlt.system.service.impl;
+
+import org.apache.catalina.User;
+
+import com.zlt.system.dao.LoginDao;
+import com.zlt.system.dao.impl.LoginDaoImpl;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.service.LoginService;
+
+/**
+ * LoginService实现类
+ * method:login(User) 实现登录流程
+ * return:boolean
+ * @author xinzou
+ *
+ */
+public class LoginServiceImpl implements LoginService {
+
+	/**
+	 * service层isLogin方法实现
+	 * @param employee 员工对象
+	 * @return
+	 */
+	@Override
+	public boolean isLogin(Employee employee) {
+		LoginDaoImpl loginDaoImpl = new LoginDaoImpl();
+		boolean flag = loginDaoImpl.login(employee);
+		if (flag) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+}

@@ -1,0 +1,108 @@
+package com.zlt.system.servlet;
+import java.awt.List;
+/**
+ * @author 刘俊泽
+ * 申请报销审批
+ */
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.zlt.system.dao.impl.HotelDaoImpl;
+import com.zlt.system.entity.Reimnumtab;
+import com.zlt.system.service.ApplyreimService;
+import com.zlt.system.service.impl.ApplyreimServiceImpl;
+import com.zlt.system.vo.ApplyreimVo;
+
+/**
+ * Servlet implementation class ApplyreimServlet
+ */
+@WebServlet("/ApplyreimServlet")
+public class ApplyreimServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	ApplyreimServiceImpl app = new ApplyreimServiceImpl();
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ApplyreimServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String type = request.getParameter("type");
+		if("findall".equals(type)){
+			Reimbursement(request,response);
+		}else if("findbyid".equals(type)){
+			inquire(request,response);
+		}else if("findByName".equals(type)){
+			AppByName(request, response);
+		}else if("findBytype".equals(type)){
+			AppBytype(request,response);
+		}
+				
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		 
+	}
+	/**
+	 * @author 刘俊泽查看全部
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void Reimbursement(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		ApplyreimServiceImpl app = new ApplyreimServiceImpl();
+		java.util.List<ApplyreimVo> a = app.Reimbursement();
+		request.setAttribute("list", a);
+		request.getRequestDispatcher("demo/expenseclaim.jsp").forward(request, response);
+	}
+	/**
+	 * @author 刘俊泽 根据ID查询
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void inquire(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	/*	System.out.println("进来了");*/
+		String id=request.getParameter("app_abb");
+	
+		java.util.List<ApplyreimVo> b = app.FindById(id);
+		request.setAttribute("list",b);
+		request.getRequestDispatcher("demo/expenseclaim.jsp").forward(request, response);
+		
+		
+		
+	}
+	private void AppByName(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		String name = request.getParameter("emp_name");
+		java.util.List<ApplyreimVo> c = app.FindByName(name);
+		request.setAttribute("list", c);
+		request.getRequestDispatcher("demo/expenseclaim.jsp").forward(request, response);
+	}
+	private void AppBytype(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		String type = request.getParameter("reim_type");
+		HotelDaoImpl ty = new HotelDaoImpl();
+		java.util.List<ApplyreimVo> t = ty.FindBytype(type);
+		request.setAttribute("list", t);
+		request.getRequestDispatcher("demo/expenseclaim.jsp").forward(request, response);
+	}
+}

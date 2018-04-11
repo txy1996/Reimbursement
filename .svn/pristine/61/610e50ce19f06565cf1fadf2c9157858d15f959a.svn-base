@@ -1,0 +1,15 @@
+package com.zlt.system.service;
+
+import com.zlt.system.dao.impl.CurrencyDao;
+import com.zlt.system.entity.Bills;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Hire;
+/**
+ * 
+ * @author 米邓勇
+ * @date 2018/1/22
+ * @explain 基础CurrencyDao类实现数据的基础查询
+ */
+public class HireService extends CurrencyDao<Employee>{
+
+}

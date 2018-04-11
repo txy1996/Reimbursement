@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>个人报表</title>
+    <link rel="stylesheet" href="../frame/layui/css/layui.css">
+    <link rel="stylesheet" href="../frame/static/css/style.css">
+    <link rel="icon" href="../frame/static/image/code.png">
+</head>
+<body class="body">
+
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+
+<div id="main-line" style="width: 100%;height:400px;"></div>
+
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>报销类型统计</legend>
+</fieldset>
+
+<div id="main-bing" style="width: 100%;height:400px;"></div>
+
+<script type="text/javascript" src="../frame/layui/layui.js"></script>
+<script type="text/javascript" src="../frame/echarts/echarts.min.js"></script>
+<script type="text/javascript">
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main-line'));
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption({
+        title: {
+            text: '月报销单数：'
+        },
+        tooltip: {},
+        legend: {
+            data:['单数']
+        },
+        xAxis: {
+            data: ["4月","5月","6月","7月","8月","9月"]
+        },
+        yAxis: {},
+        series: [{
+            name: '报销单数',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    });
+
+    // 基于准备好的dom，初始化echarts实例
+    var chart = echarts.init(document.getElementById('main-bing'));
+
+    // 配置
+    chart.setOption({
+        series : [
+            {
+                name: '本月报销类型',
+                type: 'pie',
+                radius: '55%',
+                data:[
+                    {value:400, name:'差旅'},
+                    {value:335, name:'住宿'},
+                    {value:310, name:'交通'},
+                    {value:274, name:'其他'},
+//                    {value:235, name:'视频广告'}
+                ]
+            }
+        ]
+    });
+
+    layui.use(['element'], function(){
+        var element = layui.element
+            ,$      = layui.jquery;
+
+        // you code ...
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+package com.zlt.system.entity;
+/**
+ * 
+ * @author 晓煜  知了堂项目Java三组
+ * @date 2018年1月22日20:59:48
+ * @explain  报销编号表的实体类
+ *
+ */
+public class Number {
+	 private int  number_id;
+	 private int app_type;
+	 private String app_add;
+	 
+}

@@ -1,0 +1,33 @@
+package com.zlt.system.dao;
+import com.zlt.system.entity.Travel;
+import java.util.List;
+/**
+ * 调用差旅表数据的接口
+ * @author 任义平
+ *
+ */
+
+public interface TravelDao extends CurrencyDao<Travel>{
+
+	/**
+	 * 差旅费报销填写
+	 * @param travel
+	 */
+	public void Insert(Travel travel);
+	/**
+	 * 差旅费报销删除
+	 * @param travel
+	 */
+	public void Delete(Travel travel);
+	/**
+	 * 差旅费报销修改
+	 * @param travel
+	 */
+	public void Update(Travel travel);
+	/**
+	 * 差旅费报销查询
+	 * @param travel
+	 * @return
+	 */
+	public List<Travel> Select(Travel travel);
+}

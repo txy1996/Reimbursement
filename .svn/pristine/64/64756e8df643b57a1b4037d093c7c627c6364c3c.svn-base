@@ -1,0 +1,53 @@
+package com.zlt.system.vo;
+/**
+ * 报销类型的四个详情
+ * @author 任义平
+ *
+ */
+public class InfoVo {
+	private HotelInfoVo hotelinfo;
+	private OtherInfoVo otherinfo;
+	private TrafficInfoVo trafficinfo;
+	private TravelInfoVo travelinfo;
+	public HotelInfoVo getHotelinfo() {
+		return hotelinfo;
+	}
+	public void setHotelinfo(HotelInfoVo hotelinfo) {
+		this.hotelinfo = hotelinfo;
+	}
+	public OtherInfoVo getOtherinfo() {
+		return otherinfo;
+	}
+	public void setOtherinfo(OtherInfoVo otherinfo) {
+		this.otherinfo = otherinfo;
+	}
+	public TrafficInfoVo getTrafficinfo() {
+		return trafficinfo;
+	}
+	public void setTrafficinfo(TrafficInfoVo trafficinfo) {
+		this.trafficinfo = trafficinfo;
+	}
+	public TravelInfoVo getTravelinfo() {
+		return travelinfo;
+	}
+	public void setTravelinfo(TravelInfoVo travelinfo) {
+		this.travelinfo = travelinfo;
+	}
+	public InfoVo(HotelInfoVo hotelinfo, OtherInfoVo otherinfo, TrafficInfoVo trafficinfo, TravelInfoVo travelinfo) {
+		super();
+		this.hotelinfo = hotelinfo;
+		this.otherinfo = otherinfo;
+		this.trafficinfo = trafficinfo;
+		this.travelinfo = travelinfo;
+	}
+	public InfoVo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "InfoVo [hotelinfo=" + hotelinfo + ", otherinfo=" + otherinfo + ", trafficinfo=" + trafficinfo
+				+ ", travelinfo=" + travelinfo + "]";
+	}
+	
+}

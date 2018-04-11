@@ -1,0 +1,23 @@
+package com.zlt.system.dao.impl;
+
+import org.apache.catalina.User;
+import com.zlt.system.dao.LoginDao;
+
+/**
+ * LoginDao的实现类
+ * 包含一个Login(User user)方法
+ * @author xinzou
+ *
+ */
+
+public class LoginDaoImpl implements LoginDao {
+
+	/**
+	 * login方法实现
+	 */
+	public boolean login(User user) {
+		
+		return false;
+	}
+
+}

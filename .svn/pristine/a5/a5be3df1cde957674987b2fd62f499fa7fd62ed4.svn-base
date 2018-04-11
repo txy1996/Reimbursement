@@ -1,0 +1,13 @@
+package com.zlt.system.dao.impl;
+
+import com.zlt.system.dao.ReimTypeTabDao;
+import com.zlt.system.entity.ReimTypeTab;
+
+/**
+ * 调用报销类型表信息的实现类
+ * @author 米邓勇
+ *
+ */
+public class ReimTypeTabDaoImpl extends CurrencyDaoImpl<ReimTypeTab> implements ReimTypeTabDao{
+
+}

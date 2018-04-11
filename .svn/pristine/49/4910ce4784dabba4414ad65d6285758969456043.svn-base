@@ -1,0 +1,5 @@
+package com.zlt.system.service;
+
+public interface TestService {
+
+}

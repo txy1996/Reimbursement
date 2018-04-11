@@ -1,0 +1,33 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.OtherDao;
+import com.zlt.system.entity.Other;
+import com.zlt.system.vo.History;
+/**
+ * 其他类型报销信息的实现类
+ * @author 米邓勇
+ *
+ */
+public class OtherDaoImpl extends CurrencyDaoImpl<Other>  implements OtherDao{
+
+	@Override
+	public List<History> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<History> findLike(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<History> findByDate(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

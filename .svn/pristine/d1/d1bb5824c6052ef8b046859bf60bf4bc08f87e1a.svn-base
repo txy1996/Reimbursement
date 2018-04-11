@@ -1,0 +1,43 @@
+package com.zlt.system.service;
+
+import java.util.List;
+
+import com.zlt.system.entity.Status;
+
+/**
+ * 会计审计
+ * @author 任义平
+ *
+ */
+public interface AccountingService {
+	/**
+	 * 根据报销编号查询
+	 */
+	public void FindById();
+	/**
+	 * 报销信息
+	 * @param <T>
+	 * 
+	 */
+	public <T> List<T> Reimbursement();
+	/**
+	 * 报销的详细信息
+	 * @return详情
+	 */
+	public <T> List<T> ReimbursementInfo();
+	/**
+	 * 状态查询
+	 * @return状态
+	 */
+	public Status FindState();
+	/**
+	 * 审批通过后更新状态
+	 * @param status状态
+	 */
+	public void UpdateState(Status status);
+	/**
+	 * 提交驳回原因
+	 * @param status原因
+	 */
+	public void InsertReson(Status status);
+}

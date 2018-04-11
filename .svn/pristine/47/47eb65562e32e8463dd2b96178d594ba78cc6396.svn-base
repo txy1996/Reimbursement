@@ -1,0 +1,49 @@
+package com.zlt.system.dao.impl;
+
+import java.util.List;
+
+import com.zlt.system.dao.FinanceDao;
+import com.zlt.system.entity.Finance;
+
+
+/**
+ * @author 冯杨 知了堂项目java三组
+ * @date 2018年1月22日20:20
+ * @explain 此类是对FinanceDao接口的方法的实现
+ * 
+ */
+public class FinanceDaoImpl implements FinanceDao{
+
+/**
+ * @return 返回的是查询到的财务表的所有信息集合
+ * @explain 此方法实现FincanceDao接口的FindAll方法
+ */
+	@Override
+	public List<Finance> FindAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+/**
+ * @return 返回的是根据id查询到的财务表的所有信息集合
+ * @explain 此方法实现FincanceDao接口的FindById方法
+ */
+	@Override
+	public List<Finance> FindById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+/**
+ * @param 传入Finance财务表的id，删除财务信息
+ * @return 无返回值
+ * @explain 此方法实现根据id删除财务表中的信息
+ */
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

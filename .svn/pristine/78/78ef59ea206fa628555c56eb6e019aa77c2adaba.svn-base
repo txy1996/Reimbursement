@@ -1,0 +1,39 @@
+package com.zlt.system.dao;
+
+import java.util.ArrayList;
+
+import com.zlt.system.entity.Employee;
+
+/**
+ *  用于操作员工表的接口方法 包含 EmployeeFindAll，EmployeeFindById，EmployeeUpdate，EmployeeChangePassword
+ * @author 晓煜 知了堂项目Java三组
+ * @date 2018年1月22日19:12:01
+ *  @explain  用于操作员工表的接口方法
+ */
+public interface EmployeeDao {
+	/**
+	 * 
+	 * @return 返回员工类的实体对象集合
+	 * @explain 用于查询所有员工信息
+	 */
+	ArrayList<Employee> EmployeeFindAll();
+	/**
+	 * 
+	 * @param employee 传入员工实体对象
+	 * @return 返回员工实体对象
+	 * @explain 根据员工编号查询员工信息
+	 */
+	Employee EmployeeFindById(Employee employee);
+	/**
+	 * 
+	 * @param employee 传入员工实体对象
+	 * @explain 用于修改员工基本信息
+	 */
+	void EmployeeUpdate(Employee employee);
+	 /**
+	  * 
+	  * @param employee 传入员工实体对象
+	  * @explain 用于修改员工密码
+	  */
+	void EmployeeChangePassword(Employee employee);
+}

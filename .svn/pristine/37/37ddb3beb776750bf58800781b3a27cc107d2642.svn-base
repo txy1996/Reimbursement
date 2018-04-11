@@ -1,0 +1,120 @@
+package com.zlt.system.vo;
+
+import java.util.Date;
+
+import com.zlt.system.annotation.Column;
+import com.zlt.system.annotation.Id;
+import com.zlt.system.entity.Hotel;
+
+/**
+*查看住宿状态详情中间层类
+*@author xinzou
+*@date 20180125
+*/
+
+public class StatusDetailVO extends Hotel{
+	@Id("status_id")
+	private int status_id;
+	@Column("app_abb")
+	private String app_abb;
+	@Column("status1")
+	private String status1;
+	@Column("status1_time")
+	private Date status1_time;
+	@Column("status1_opinion")
+	private String status1_opinion;
+	@Column("status2")
+	private String status2;
+	@Column("status2_time")
+	private String  status2_time;
+	@Column("status2_opinion")
+	private String  status2_opinion;
+	@Column("status_result")
+	private String  status_result;
+	public int getStatus_id() {
+		return status_id;
+	}
+	public void setStatus_id(int status_id) {
+		this.status_id = status_id;
+	}
+	public String getApp_abb() {
+		return app_abb;
+	}
+	public void setApp_abb(String app_abb) {
+		this.app_abb = app_abb;
+	}
+	public String getStatus1() {
+		return status1;
+	}
+	public void setStatus1(String status1) {
+		this.status1 = status1;
+	}
+	public Date getStatus1_time() {
+		return status1_time;
+	}
+	public void setStatus1_time(Date status1_time) {
+		this.status1_time = status1_time;
+	}
+	public String getStatus1_opinion() {
+		return status1_opinion;
+	}
+	public void setStatus1_opinion(String status1_opinion) {
+		this.status1_opinion = status1_opinion;
+	}
+	public String getStatus2() {
+		return status2;
+	}
+	public void setStatus2(String status2) {
+		this.status2 = status2;
+	}
+	public String getStatus2_time() {
+		return status2_time;
+	}
+	public void setStatus2_time(String status2_time) {
+		this.status2_time = status2_time;
+	}
+	public String getStatus2_opinion() {
+		return status2_opinion;
+	}
+	public void setStatus2_opinion(String status2_opinion) {
+		this.status2_opinion = status2_opinion;
+	}
+	public String getStatus_result() {
+		return status_result;
+	}
+	public void setStatus_result(String status_result) {
+		this.status_result = status_result;
+	}
+	public StatusDetailVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public StatusDetailVO(int hotel_id, int reim_id, String emp_name, Date hotel_time, Date hotel_first,
+			String hotel_title, String department_name, String app_abb, Date hotel_finish, String hotel_site,
+			int hotel_days, String hotel_people, String hotel_Other, float hotel_quarterage, String hotel_remarks) {
+		super(hotel_id, reim_id, emp_name, hotel_time, hotel_first, hotel_title, department_name, app_abb, hotel_finish,
+				hotel_site, hotel_days, hotel_people, hotel_Other, hotel_quarterage, hotel_remarks);
+		// TODO Auto-generated constructor stub
+	}
+	public StatusDetailVO(int status_id, String app_abb, String status1, Date status1_time, String status1_opinion,
+			String status2, String status2_time, String status2_opinion, String status_result) {
+		super();
+		this.status_id = status_id;
+		this.app_abb = app_abb;
+		this.status1 = status1;
+		this.status1_time = status1_time;
+		this.status1_opinion = status1_opinion;
+		this.status2 = status2;
+		this.status2_time = status2_time;
+		this.status2_opinion = status2_opinion;
+		this.status_result = status_result;
+	}
+	@Override
+	public String toString() {
+		return "HotelDetail [status_id=" + status_id + ", app_abb=" + app_abb + ", status1=" + status1
+				+ ", status1_time=" + status1_time + ", status1_opinion=" + status1_opinion + ", status2=" + status2
+				+ ", status2_time=" + status2_time + ", status2_opinion=" + status2_opinion + ", status_result="
+				+ status_result + "]";
+	}
+	
+}

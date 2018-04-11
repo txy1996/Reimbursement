@@ -1,0 +1,94 @@
+package com.zlt.system.dao.impl;
+
+import java.sql.SQLException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import javax.management.Query;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+import com.zlt.system.dao.TravelDao;
+import com.zlt.system.entity.Employee;
+import com.zlt.system.entity.Travel;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.util.DBUtil;
+import com.zlt.system.vo.Report;
+import com.zlt.system.vo.TravelInfoVo;
+/**
+ * 差旅表数据的接口
+ * @author 米邓勇
+ *
+ */
+public class TravelDaoImpl extends CurrencyDaoImpl<Travel> implements TravelDao {
+	/**
+	 * @author 晓煜
+	 */
+	@Override
+	public List<Report> TravelFindById(Employee employee) {
+		// TODO Auto-generated method stub
+		String sql="SELECT COUNT(m.reim_id) AS value ,reimtypetab.`reim_type` AS type  FROM "
+							+" (SELECT app_abb,reim_id  FROM travel WHERE travel.`emp_name`= ?  "
+							+" UNION   "
+							+" SELECT app_abb,reim_id FROM traffic WHERE traffic.`emp_name`= ?   " 
+							+" UNION    "
+							+" SELECT app_abb,reim_id FROM other WHERE other.`emp_name`= ?   "
+							+" UNION    "
+							+" SELECT app_abb,reim_id FROM  hotel WHERE hotel.`emp_name`= ?  ) m ,  "
+							+" reimtypetab  "
+							+" WHERE m.reim_id=reimtypetab.`reim_id`  "
+							+" GROUP BY reimtypetab.`reim_type`  ";
+ 
+		List<Report> reports=new ArrayList<Report>();
+		try {
+			reports=DBUtil.getQueryRunner().query(sql, new BeanListHandler<Report>(Report.class),employee.getEmp_name(),employee.getEmp_name(),employee.getEmp_name(),employee.getEmp_name());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reports;
+	}
+/**
+ * @author 任义平
+ * 用于会计审计界面的详情查询
+ */
+	@Override
+	public TravelInfoVo FindByType(String app_abb) {
+		// TODO Auto-generated method stub
+		String sql="SELECT travel_address,travel_start,travel_end,travel_target,travel_result,travel_date,travel_remark,reim_type,status1_opinion\r\n" + 
+				"FROM travel,reimtypetab,STATUS\r\n" + 
+				"WHERE status.`app_abb`=travel.app_abb=? AND reimtypetab.`reim_id`=travel.`reim_id`";
+		QueryRunner runner=new QueryRunner();
+		TravelInfoVo travel=null;
+		try {
+			travel=runner.query(DBUtil.getConnection(), sql, new BeanHandler<TravelInfoVo>(TravelInfoVo.class),app_abb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return travel;
+	}
+
+
+	/**
+	 * 申请审批页面查看详情
+	 * @author 刘俊泽
+	 */
+	@Override
+	public TravelInfoVo FindByTy(String app_abb) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT travel_address,travel_start,travel_end,travel_target,travel_result,travel_date,travel_remark,reim_type,status1_opinion\r\n" + 
+				"FROM travel,reimtypetab,STATUS\r\n" + 
+				"WHERE status.`app_abb`=travel.app_abb=? AND reimtypetab.`reim_id`=travel.`reim_id`";
+		QueryRunner runner=new QueryRunner();
+		TravelInfoVo trave2=null;
+		try {
+			trave2=runner.query(DBUtil.getConnection(), sql, new BeanHandler<TravelInfoVo>(TravelInfoVo.class),app_abb);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return trave2;
+	}
+    
+}
